@@ -1,0 +1,5 @@
+name: realoni
+version: '${version}'
+main: ramune314159265.realoni.Realoni
+api-version: '1.16'
+description: リアル鬼ごっこサバイバル的なもの
