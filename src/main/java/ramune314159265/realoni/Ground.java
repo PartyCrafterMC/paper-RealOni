@@ -1,35 +1,25 @@
 package ramune314159265.realoni;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ground {
-	private static final Set<Material> IGNORED_BLOCKS = Stream.of(
-					Tag.FLOWER_POTS.getValues(),
-					Tag.LEAVES.getValues(),
-					new HashSet<>(Arrays.asList(
-							Material.SHORT_GRASS,
-							Material.TALL_GRASS,
-							Material.FERN,
-							Material.LARGE_FERN,
-							Material.VINE,
-							Material.SNOW,
-							Material.DEAD_BUSH,
-							Material.SUGAR_CANE,
-							Material.GLASS
-					))
-			)
-			.flatMap(Collection::stream)
-			.collect(Collectors.toSet());
+	private static final Set<Material> IGNORED_BLOCKS = Sets.newHashSet(Iterables.concat(
+			Tag.FLOWER_POTS.getValues(),
+			Tag.LEAVES.getValues(),
+			Tag.REPLACEABLE.getValues(),
+			new HashSet<>(Arrays.asList(
+					Material.SUGAR_CANE,
+					Material.GLASS
+			))));
 
 
 	public static double getY(World world, int x, int z) {
