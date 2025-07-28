@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import ramune314159265.realoni.commands.subcommands.StartSubCommand;
 import ramune314159265.realoni.commands.subcommands.SubCommand;
+import ramune314159265.realoni.commands.subcommands.SupplyCountSubCommand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.Optional;
 
 public class RealOniCommand implements CommandExecutor, TabCompleter {
 	static SubCommand[] commands = {
-			new StartSubCommand()
+			new StartSubCommand(),
+			new SupplyCountSubCommand()
 	};
 
 	@Override

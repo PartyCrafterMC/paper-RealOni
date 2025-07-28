@@ -38,11 +38,11 @@ public class Supply {
 		List<Block> randomBlocks = new ArrayList<>();
 		Random random = new Random();
 		for (int i = 0; i < count; i++) {
-			int randomX = random.nextInt(Realoni.worldSize) + Realoni.worldSize / 2;
-			int randomZ = random.nextInt(Realoni.worldSize) + Realoni.worldSize / 2;
+			int randomX = random.nextInt(Realoni.worldSize) - Realoni.worldSize / 2;
+			int randomZ = random.nextInt(Realoni.worldSize) - Realoni.worldSize / 2;
 			randomBlocks.add(Realoni.defaultWorld.getBlockAt(
 					randomX,
-					Ground.getY(Realoni.defaultWorld, randomX, randomZ),
+					Ground.getY(Realoni.defaultWorld, randomX, randomZ) + 1,
 					randomZ
 			));
 		}
