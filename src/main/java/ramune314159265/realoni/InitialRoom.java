@@ -34,7 +34,7 @@ public class InitialRoom {
 		fillHollow(
 				center.getWorld(),
 				center.getBlockX() - width / 2, center.getBlockX() + width / 2,
-				center.getBlockY() + altitude - height / 2, center.getBlockY() + altitude + height / 2,
+				center.getBlockY() + altitude, center.getBlockY() + altitude + height,
 				center.getBlockZ() - width / 2, center.getBlockZ() + width / 2,
 				wallMaterial
 		);
@@ -44,7 +44,7 @@ public class InitialRoom {
 		return new Location(
 				center.getWorld(),
 				0,
-				(center.getBlockY() + altitude - (double) height / 2) + 1,
+				center.getBlockY() + altitude + 1d,
 				0
 		);
 	}
