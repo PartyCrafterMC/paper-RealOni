@@ -1,11 +1,13 @@
 package ramune314159265.realoni.commands;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import ramune314159265.realoni.commands.subcommands.*;
+import ramune314159265.realoni.commands.subcommands.StartSubCommand;
+import ramune314159265.realoni.commands.subcommands.SubCommand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +31,10 @@ public class RealOniCommand implements CommandExecutor, TabCompleter {
 				.filter(c -> c.getName().equals(subCommandName))
 				.findFirst();
 		if (subCommandOptional.isEmpty()) {
-			sender.sendMessage(ChatColor.RED + "サブコマンド: " + String.join(", ", Arrays.stream(RealOniCommand.commands).map(SubCommand::getName).toList()));
+			sender.sendMessage(Component.text()
+					.content("サブコマンド: " + String.join(", ", Arrays.stream(RealOniCommand.commands).map(SubCommand::getName).toList()))
+					.color(NamedTextColor.GREEN).build()
+			);
 			return true;
 		}
 

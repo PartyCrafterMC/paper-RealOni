@@ -11,7 +11,7 @@ import ramune314159265.realoni.Realoni;
 import java.util.List;
 import java.util.Objects;
 
-public class StartSubCommand extends SubCommand{
+public class StartSubCommand extends SubCommand {
 	@Override
 	public String getName() {
 		return "start";
@@ -19,11 +19,11 @@ public class StartSubCommand extends SubCommand{
 
 	@Override
 	public void onCommand(CommandSender sender, List<String> args) {
-		if(!Objects.isNull(Realoni.processingGame)){
+		if (!Objects.isNull(Realoni.processingGame)) {
 			sender.sendMessage(Component.text().content("既に開始されています").color(NamedTextColor.RED).build());
 			return;
 		}
-		if(Realoni.chunky.isRunning(Realoni.defaultWorld.getName())){
+		if (Realoni.chunky.isRunning(Realoni.defaultWorld.getName())) {
 			sender.sendMessage(Component.text().content("チャンクの生成中です").color(NamedTextColor.RED).build());
 			return;
 		}
@@ -34,7 +34,7 @@ public class StartSubCommand extends SubCommand{
 		openExec.runTaskLater(Realoni.getInstance(), (BukkitTask task) -> {
 			Realoni.broadcast(Component.text().content("ゲームスタート！").color(NamedTextColor.LIGHT_PURPLE).build());
 			Realoni.startGame();
-		},200);
+		}, 200);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class Ground {
 			))));
 
 
-	public static double getY(World world, int x, int z) {
+	public static int getY(World world, int x, int z) {
 		for (int y = world.getMaxHeight() - 1; y >= 0; y--) {
 			Block block = world.getBlockAt(x, y, z);
 			Material type = block.getType();
