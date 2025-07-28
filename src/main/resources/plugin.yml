@@ -5,3 +5,17 @@ api-version: '1.21'
 authors: [ ramune314159265 ]
 description: リアル鬼ごっこサバイバル的なもの
 softdepend: [Chunky]
+commands:
+  realoni:
+    description: A command for managing this plugin
+    permission: realoni.command.realoni
+    usage: /realoni
+
+permissions:
+  realoni.command.*:
+    description: Allows you to perform commands in this plugin.
+    children:
+      realoni.command.realoni: true
+  realoni.command.realoni:
+    description: Allows you to perform /realoni command.
+    default: op

@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.popcraft.chunky.api.ChunkyAPI;
+import ramune314159265.realoni.commands.RealOniCommand;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public final class Realoni extends JavaPlugin {
 	public static World defaultWorld;
 	public static ChunkyAPI chunky;
 	private static Realoni instance;
+	public static Game processingGame;
 
 	public static Realoni getInstance() {
 		return instance;
@@ -56,6 +58,12 @@ public final class Realoni extends JavaPlugin {
 		player.setGameMode(GameMode.ADVENTURE);
 	}
 
+	public static Game startGame(){
+		Game game = new Game();
+		processingGame = game;
+		return game;
+	}
+
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -63,6 +71,8 @@ public final class Realoni extends JavaPlugin {
 		chunky = getServer().getServicesManager().load(ChunkyAPI.class);
 
 		this.getServer().getPluginManager().registerEvents(new PluginListener(), this);
+		this.getCommand("realoni").setExecutor(new RealOniCommand());
+
 		worldInitialize();
 	}
 
