@@ -17,7 +17,7 @@ public class Ground {
 					Tag.FLOWER_POTS.getValues(),
 					Tag.LEAVES.getValues(),
 					new HashSet<>(Arrays.asList(
-							Material.GRASS,
+							Material.SHORT_GRASS,
 							Material.TALL_GRASS,
 							Material.FERN,
 							Material.LARGE_FERN,
