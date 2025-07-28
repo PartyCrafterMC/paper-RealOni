@@ -4,3 +4,4 @@ main: ramune314159265.realoni.Realoni
 api-version: '1.21'
 authors: [ ramune314159265 ]
 description: リアル鬼ごっこサバイバル的なもの
+softdepend: [Chunky]

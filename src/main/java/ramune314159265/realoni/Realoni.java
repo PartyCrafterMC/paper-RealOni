@@ -1,19 +1,34 @@
 package ramune314159265.realoni;
 
-import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
-import org.bukkit.GameRule;
-import org.bukkit.World;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentBuilder;
+import net.kyori.adventure.text.ComponentLike;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
+import org.popcraft.chunky.api.ChunkyAPI;
+
+import java.util.List;
 
 public final class Realoni extends JavaPlugin {
 	public static final int worldSize = 600;
 	public static World defaultWorld;
+	public static ChunkyAPI chunky;
 	private static Realoni instance;
 
 	public static Realoni getInstance() {
 		return instance;
+	}
+
+	public static void broadcast(Component message) {
+		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
+			p.sendMessage(message);
+		}
 	}
 
 	public static void worldInitialize() {
@@ -29,6 +44,11 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.getWorldBorder().setCenter(0,0);
 		defaultWorld.getWorldBorder().setSize(worldSize);
 		InitialRoom.place();
+
+		Realoni.chunky.startTask(defaultWorld.getName(), "square", 0, 0, (double) worldSize / 2, (double) worldSize / 2, "concentric");
+		Realoni.chunky.onGenerationComplete(event -> broadcast(
+				Component.text().content("チャンクの事前読み込みが完了しました").color(NamedTextColor.GREEN).build()
+		));
 	}
 
 	public static void playerInitialize(Player player) {
@@ -39,7 +59,8 @@ public final class Realoni extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-		defaultWorld = getServer().getWorlds().get(0);
+		defaultWorld = getServer().getWorlds().getFirst();
+		chunky = getServer().getServicesManager().load(ChunkyAPI.class);
 
 		this.getServer().getPluginManager().registerEvents(new PluginListener(), this);
 		worldInitialize();
