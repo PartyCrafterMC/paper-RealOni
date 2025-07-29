@@ -6,13 +6,13 @@ import org.bukkit.World;
 
 public class InitialRoom {
 	private static final Material wallMaterial = Material.GLASS;
+	private static final int altitude = 40;
 	private static final Location center = new Location(
 			Realoni.defaultWorld,
 			0,
-			Ground.getY(Realoni.defaultWorld, 0, 0),
+			Ground.getY(Realoni.defaultWorld, 0, 0) + altitude,
 			0
 	);
-	private static final int altitude = 40;
 	private static final int width = 30;
 	private static final int height = 10;
 
@@ -34,9 +34,19 @@ public class InitialRoom {
 		fillHollow(
 				center.getWorld(),
 				center.getBlockX() - width / 2, center.getBlockX() + width / 2,
-				center.getBlockY() + altitude, center.getBlockY() + altitude + height,
+				center.getBlockY(), center.getBlockY() + height,
 				center.getBlockZ() - width / 2, center.getBlockZ() + width / 2,
 				wallMaterial
+		);
+	}
+
+	public static void remove() {
+		fillHollow(
+				center.getWorld(),
+				center.getBlockX() - width / 2, center.getBlockX() + width / 2,
+				center.getBlockY(), center.getBlockY() + height,
+				center.getBlockZ() - width / 2, center.getBlockZ() + width / 2,
+				Material.AIR
 		);
 	}
 
@@ -44,7 +54,7 @@ public class InitialRoom {
 		return new Location(
 				center.getWorld(),
 				0,
-				center.getBlockY() + altitude + 1d,
+				center.getBlockY() + 1d,
 				0
 		);
 	}

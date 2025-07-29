@@ -44,6 +44,6 @@ public class StartSubCommand extends SubCommand {
 
 	@Override
 	public boolean isAvailable() {
-		return !Realoni.chunky.isRunning(Realoni.defaultWorld.getName()) || Objects.isNull(Realoni.processingGame);
+		return !Realoni.chunky.isRunning(Realoni.defaultWorld.getName()) && Objects.isNull(Realoni.processingGame);
 	}
 }

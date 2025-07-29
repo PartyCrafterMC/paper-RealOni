@@ -41,7 +41,6 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.getWorldBorder().setDamageAmount(0);
 		defaultWorld.getWorldBorder().setCenter(0, 0);
 		defaultWorld.getWorldBorder().setSize(worldSize);
-		defaultWorld.setHardcore(true);
 		InitialRoom.place();
 
 		Realoni.chunky.startTask(defaultWorld.getName(), "square", 0, 0, (double) worldSize / 2, (double) worldSize / 2, "concentric");
