@@ -7,7 +7,7 @@ import ramune314159265.realoni.Supply;
 import java.util.List;
 import java.util.Objects;
 
-public class SupplyCountSubCommand extends SubCommand{
+public class SupplyCountSubCommand extends SubCommand {
 	@Override
 	public String getName() {
 		return "supplycount";
