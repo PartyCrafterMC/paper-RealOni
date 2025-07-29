@@ -37,9 +37,11 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
 		defaultWorld.setGameRule(GameRule.KEEP_INVENTORY, true);
 		defaultWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
+		defaultWorld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 		defaultWorld.getWorldBorder().setDamageAmount(0);
 		defaultWorld.getWorldBorder().setCenter(0, 0);
 		defaultWorld.getWorldBorder().setSize(worldSize);
+		defaultWorld.setHardcore(true);
 		InitialRoom.place();
 
 		Realoni.chunky.startTask(defaultWorld.getName(), "square", 0, 0, (double) worldSize / 2, (double) worldSize / 2, "concentric");

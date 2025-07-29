@@ -12,6 +12,7 @@ public class Game {
 		Realoni.defaultWorld.setDifficulty(Difficulty.NORMAL);
 		Realoni.defaultWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		Realoni.defaultWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, true);
+		Realoni.defaultWorld.setGameRule(GameRule.REDUCED_DEBUG_INFO, true);
 
 		Supply.placeSupplies(Supply.defaultSupplyCount);
 	}
