@@ -16,4 +16,9 @@ public class Oni extends RoleAbstract{
 	public String getNameTag() {
 		return "鬼";
 	}
+
+	@Override
+	public boolean isSurvivor() {
+		return false;
+	}
 }

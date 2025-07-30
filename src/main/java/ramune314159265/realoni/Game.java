@@ -6,9 +6,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
+import ramune314159265.realoni.roles.RoleAbstract;
+import ramune314159265.realoni.roles.Roles;
+import ramune314159265.realoni.roles.Survivor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +24,7 @@ public class Game {
 	public static final long worldShrinkTime = (long) Math.floor((Realoni.worldSize - miniumWorldSize) / worldShrinkPerSecond);
 	public LocalDateTime startAt;
 	public LocalDateTime releastAt;
+	public HashMap<Player, RoleAbstract> playerRoles = new HashMap<>();
 
 	public Game() {
 		initialize();
@@ -36,6 +42,12 @@ public class Game {
 		InitialRoom.remove();
 		Cage.place();
 		Supply.placeSupplies(Supply.defaultSupplyCount);
+
+		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
+			try {
+				playerRoles.put(p, Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p));
+			} catch (Exception ignored) {}
+		}
 
 		TimerTask task = new TimerTask() {
 			public void run() {
@@ -57,6 +69,14 @@ public class Game {
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(task, 0, 1000);
+	}
+
+	public RoleAbstract getPlayerRole(Player player){
+		if(!playerRoles.containsKey(player)){
+			Survivor defaultRole = new Survivor(player);
+			playerRoles.put(player, defaultRole);
+		}
+		return playerRoles.get(player);
 	}
 
 	public void oniRelease() {

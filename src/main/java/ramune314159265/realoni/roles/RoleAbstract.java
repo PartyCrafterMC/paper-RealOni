@@ -8,4 +8,6 @@ abstract public class RoleAbstract {
 	public abstract String getDeathMessage();
 
 	public abstract String getNameTag();
+
+	public abstract boolean isSurvivor();
 }

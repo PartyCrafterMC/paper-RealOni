@@ -12,11 +12,11 @@ public class Roles {
 	public static HashMap<Player, RoleEntry> playerRoleEntry = new HashMap<>();
 
 	public static final List<RoleEntry> roleList = List.of(
-			new RoleEntry(Survivor.class, "プレイヤー", Material.IRON_SWORD, NamedTextColor.YELLOW, false),
-			new RoleEntry(Cameleon.class, "11の鬼", Material.NETHERITE_AXE, NamedTextColor.GREEN, true)
+			new RoleEntry(Survivor.class, "プレイヤー", Material.IRON_SWORD, NamedTextColor.YELLOW),
+			new RoleEntry(Cameleon.class, "11の鬼", Material.NETHERITE_AXE, NamedTextColor.GREEN)
 	);
 
-	public record RoleEntry(Class<? extends RoleAbstract> cls, String name, Material icon, TextColor color, boolean isOni) {
+	public record RoleEntry(Class<? extends RoleAbstract> cls, String name, Material icon, TextColor color) {
 	}
 
 	public static RoleEntry getPlayerRoleEntry(Player player){

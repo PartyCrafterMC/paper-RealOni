@@ -16,4 +16,9 @@ public class Survivor extends RoleAbstract {
 	public String getNameTag() {
 		return null;
 	}
+
+	@Override
+	public boolean isSurvivor() {
+		return true;
+	}
 }
