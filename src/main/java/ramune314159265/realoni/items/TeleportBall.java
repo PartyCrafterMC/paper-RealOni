@@ -10,7 +10,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import ramune314159265.realoni.Realoni;
 
-public class TeleportBall extends CustomItem{
+public class TeleportBall extends CustomItem {
 	@Override
 	public String getName() {
 		return "テレポート玉";

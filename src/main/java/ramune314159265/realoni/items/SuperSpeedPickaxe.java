@@ -1,16 +1,18 @@
 package ramune314159265.realoni.items;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.*;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemRarity;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import ramune314159265.realoni.Realoni;
 
-public class SuperSpeedPickaxe extends CustomItem{
+public class SuperSpeedPickaxe extends CustomItem {
 	@Override
 	public String getName() {
 		return "爆速ピッケル";

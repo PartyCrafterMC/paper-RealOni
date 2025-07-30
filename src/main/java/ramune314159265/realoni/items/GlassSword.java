@@ -10,10 +10,9 @@ import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 import ramune314159265.realoni.Realoni;
 
-public class GlassSword extends CustomItem{
+public class GlassSword extends CustomItem {
 	@Override
 	public String getName() {
 		return "ガラスソード";
