@@ -12,7 +12,7 @@ import org.popcraft.chunky.api.ChunkyAPI;
 import ramune314159265.realoni.commands.RealOniCommand;
 
 public final class Realoni extends JavaPlugin {
-	public static final int worldSize = 600;
+	public static final int worldSize = 800;
 	public static World defaultWorld;
 	public static ChunkyAPI chunky;
 	public static Game processingGame;
@@ -38,6 +38,7 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.setGameRule(GameRule.KEEP_INVENTORY, true);
 		defaultWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
 		defaultWorld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+		defaultWorld.setGameRule(GameRule.FALL_DAMAGE, false);
 		defaultWorld.getWorldBorder().setDamageAmount(0);
 		defaultWorld.getWorldBorder().setCenter(0, 0);
 		defaultWorld.getWorldBorder().setSize(worldSize);

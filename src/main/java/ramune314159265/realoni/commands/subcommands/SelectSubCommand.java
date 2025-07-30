@@ -6,11 +6,10 @@ import org.bukkit.entity.Player;
 import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.roles.Roles;
 
-import javax.management.relation.RoleList;
 import java.util.List;
 import java.util.Objects;
 
-public class SelectSubCommand extends SubCommand{
+public class SelectSubCommand extends SubCommand {
 	@Override
 	public String getName() {
 		return "select";
@@ -18,14 +17,13 @@ public class SelectSubCommand extends SubCommand{
 
 	@Override
 	public void onCommand(CommandSender sender, List<String> args) {
-		if(args.size() != 2){
+		if (args.size() != 2) {
 			return;
 		}
-		if(!(sender instanceof Player)){
+		if (!(sender instanceof Player player)) {
 			return;
 		}
 
-		Player player = (Player) sender;
 		Roles.RoleEntry roleEntry = Roles.roleList.stream()
 				.filter(r -> Objects.equals(r.name(), args.get(1)))
 				.findFirst()

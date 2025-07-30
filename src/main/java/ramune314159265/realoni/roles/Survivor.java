@@ -7,7 +7,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Survivor extends RoleAbstract {
-	public Survivor(Player player){
+	public Survivor(Player player) {
 		this.player = player;
 	}
 

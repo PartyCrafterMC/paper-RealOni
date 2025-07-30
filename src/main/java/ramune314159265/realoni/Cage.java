@@ -3,7 +3,6 @@ package ramune314159265.realoni;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.EntityType;
 
 public class Cage {
 	private static final Location center = new Location(

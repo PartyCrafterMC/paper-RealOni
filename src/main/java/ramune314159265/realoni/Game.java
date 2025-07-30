@@ -11,7 +11,6 @@ import ramune314159265.realoni.roles.RoleAbstract;
 import ramune314159265.realoni.roles.Roles;
 import ramune314159265.realoni.roles.Survivor;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -21,7 +20,7 @@ import java.util.TimerTask;
 public class Game {
 	public static final long releaseSecond = 3 * 60;
 	public static final int miniumWorldSize = 50;
-	public static final double worldShrinkPerSecond = 1f / 20f;
+	public static final double worldShrinkPerSecond = 1f / 15f;
 	public static final long worldShrinkTime = (long) Math.floor((Realoni.worldSize - miniumWorldSize) / worldShrinkPerSecond);
 	public LocalDateTime startAt;
 	public LocalDateTime releastAt;
@@ -39,6 +38,7 @@ public class Game {
 		Realoni.defaultWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		Realoni.defaultWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, true);
 		Realoni.defaultWorld.setGameRule(GameRule.REDUCED_DEBUG_INFO, true);
+		Realoni.defaultWorld.setGameRule(GameRule.FALL_DAMAGE, true);
 
 		InitialRoom.remove();
 		Cage.place();
@@ -47,11 +47,12 @@ public class Game {
 		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
 			try {
 				playerRoles.put(p, Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p));
-			} catch (Exception ignored) {}
+			} catch (Exception ignored) {
+			}
 
 			RoleAbstract role = getPlayerRole(p);
 			Location cageLocation = Cage.getSpawnLocation();
-			if(!role.isSurvivor()){
+			if (!role.isSurvivor()) {
 				p.teleport(cageLocation);
 			} else {
 				p.teleport(new Location(
@@ -86,8 +87,8 @@ public class Game {
 		timer.scheduleAtFixedRate(task, 0, 1000);
 	}
 
-	public RoleAbstract getPlayerRole(Player player){
-		if(!playerRoles.containsKey(player)){
+	public RoleAbstract getPlayerRole(Player player) {
+		if (!playerRoles.containsKey(player)) {
 			Survivor defaultRole = new Survivor(player);
 			playerRoles.put(player, defaultRole);
 		}
@@ -97,7 +98,7 @@ public class Game {
 	public void oniRelease() {
 		Cage.release();
 		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
-			Realoni.defaultWorld.strikeLightningEffect(p.getLocation().add(0, 50 ,0));
+			Realoni.defaultWorld.strikeLightningEffect(p.getLocation().add(0, 50, 0));
 		}
 		Realoni.defaultWorld.getWorldBorder().setSize(miniumWorldSize, worldShrinkTime);
 	}

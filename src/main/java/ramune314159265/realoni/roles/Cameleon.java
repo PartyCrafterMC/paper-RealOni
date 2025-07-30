@@ -2,8 +2,8 @@ package ramune314159265.realoni.roles;
 
 import org.bukkit.entity.Player;
 
-public class Cameleon extends Oni{
-	public Cameleon(Player player){
+public class Cameleon extends Oni {
+	public Cameleon(Player player) {
 		super(player);
 	}
 

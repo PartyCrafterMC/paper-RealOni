@@ -3,18 +3,12 @@ package ramune314159265.realoni;
 import net.kyori.adventure.text.Component;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
@@ -32,7 +26,7 @@ public class PluginListener implements Listener {
 	@EventHandler
 	public void onPlayerDied(PlayerDeathEvent e) {
 		e.getPlayer().setGameMode(GameMode.SPECTATOR);
-		if(Objects.isNull(Realoni.processingGame)){
+		if (Objects.isNull(Realoni.processingGame)) {
 			return;
 		}
 
@@ -43,7 +37,7 @@ public class PluginListener implements Listener {
 
 	@EventHandler
 	public void onPlayerItemDamaged(PlayerItemDamageEvent e) {
-		if(e.getItem().getType() != Material.SHIELD) {
+		if (e.getItem().getType() != Material.SHIELD) {
 			return;
 		}
 		e.setDamage(e.getItem().getType().getMaxDurability());
