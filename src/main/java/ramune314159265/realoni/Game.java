@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.roles.RoleAbstract;
 import ramune314159265.realoni.roles.Roles;
@@ -47,6 +48,19 @@ public class Game {
 			try {
 				playerRoles.put(p, Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p));
 			} catch (Exception ignored) {}
+
+			RoleAbstract role = getPlayerRole(p);
+			Location cageLocation = Cage.getSpawnLocation();
+			if(!role.isSurvivor()){
+				p.teleport(cageLocation);
+			} else {
+				p.teleport(new Location(
+						cageLocation.getWorld(),
+						cageLocation.getBlockX() + 5,
+						Ground.getY(cageLocation.getWorld(), cageLocation.getBlockX() + 5, cageLocation.getBlockZ()) + 1,
+						cageLocation.getBlockZ()
+				));
+			}
 		}
 
 		TimerTask task = new TimerTask() {
