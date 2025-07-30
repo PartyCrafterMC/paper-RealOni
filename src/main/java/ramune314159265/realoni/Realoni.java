@@ -2,14 +2,15 @@ package ramune314159265.realoni;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
-import org.bukkit.GameRule;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.popcraft.chunky.api.ChunkyAPI;
 import ramune314159265.realoni.commands.RealOniCommand;
+import ramune314159265.realoni.items.CustomItem;
+import ramune314159265.realoni.items.Items;
+
+import java.util.Objects;
 
 public final class Realoni extends JavaPlugin {
 	public static final int worldSize = 800;
@@ -43,6 +44,7 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.getWorldBorder().setCenter(0, 0);
 		defaultWorld.getWorldBorder().setSize(worldSize);
 		InitialRoom.place();
+		Items.initialize();
 
 		Realoni.chunky.startTask(defaultWorld.getName(), "square", 0, 0, (double) worldSize / 2, (double) worldSize / 2, "concentric");
 		Realoni.chunky.onGenerationComplete(event -> broadcast(
@@ -53,6 +55,9 @@ public final class Realoni extends JavaPlugin {
 	public static void playerInitialize(Player player) {
 		player.teleport(InitialRoom.getSpawnLocation());
 		player.setGameMode(GameMode.ADVENTURE);
+		for (CustomItem i : Items.customItems) {
+			player.discoverRecipe(i.getKey());
+		}
 	}
 
 	public static Game startGame() {
