@@ -61,6 +61,7 @@ public class Game {
 						cageLocation.getBlockZ()
 				));
 			}
+			role.initialize();
 		}
 
 		TimerTask task = new TimerTask() {

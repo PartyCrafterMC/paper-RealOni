@@ -10,4 +10,6 @@ abstract public class RoleAbstract {
 	public abstract String getNameTag();
 
 	public abstract boolean isSurvivor();
+
+	public abstract void initialize();
 }

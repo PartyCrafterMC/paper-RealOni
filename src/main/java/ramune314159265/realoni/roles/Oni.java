@@ -21,4 +21,9 @@ public class Oni extends RoleAbstract{
 	public boolean isSurvivor() {
 		return false;
 	}
+
+	@Override
+	public void initialize() {
+
+	}
 }
