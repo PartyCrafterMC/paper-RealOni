@@ -5,7 +5,8 @@ public class Items {
 			new TeleportBall(),
 			new LeafChestplate(),
 			new SuperSpeedPickaxe(),
-			new GlassSword()
+			new GlassSword(),
+			new Grenade()
 	};
 
 	public static void initialize() {
