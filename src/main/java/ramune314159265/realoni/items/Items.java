@@ -7,7 +7,8 @@ public class Items {
 			new SuperSpeedPickaxe(),
 			new GlassSword(),
 			new Grenade(),
-			new KingSword()
+			new KingSword(),
+			new EnergyBlade()
 	};
 
 	public static void initialize() {
