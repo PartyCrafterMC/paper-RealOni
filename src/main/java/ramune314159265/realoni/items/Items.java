@@ -1,7 +1,7 @@
 package ramune314159265.realoni.items;
 
 public class Items {
-	public static CustomItem[] customItems = {
+	public static final CustomItem[] customItems = {
 			new TeleportBall(),
 			new LeafChestplate(),
 			new SuperSpeedPickaxe(),
