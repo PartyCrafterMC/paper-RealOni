@@ -6,7 +6,8 @@ public class Items {
 			new LeafChestplate(),
 			new SuperSpeedPickaxe(),
 			new GlassSword(),
-			new Grenade()
+			new Grenade(),
+			new KingSword()
 	};
 
 	public static void initialize() {
