@@ -38,7 +38,11 @@ public class EnergyBlade extends CustomItem implements Listener {
 	public ItemStack getItemStack() {
 		ItemStack item = new ItemStack(Material.NETHERITE_SWORD);
 		ItemMeta meta = item.getItemMeta();
-		meta.itemName(Component.text(getName()));
+		meta.itemName(
+				Component.text(getName())
+						.appendSpace()
+						.append(Component.translatable("enchantment.level.1").color(NamedTextColor.BLUE))
+		);
 		meta.setRarity(ItemRarity.UNCOMMON);
 		meta.setEnchantmentGlintOverride(true);
 		meta.addEnchant(Enchantment.SHARPNESS, 1, true);
@@ -92,9 +96,19 @@ public class EnergyBlade extends CustomItem implements Listener {
 
 		if(5 * 1000 < Instant.now().toEpochMilli() - lastUsed) {
 			meta.addEnchant(Enchantment.SHARPNESS, 1, true);
+			meta.itemName(
+					Component.text(getName())
+							.appendSpace()
+							.append(Component.translatable("enchantment.level.1").color(NamedTextColor.BLUE))
+			);
 		} else {
-			int level = meta.getEnchantLevel(Enchantment.SHARPNESS) + 1;
+			int level = Math.min(meta.getEnchantLevel(Enchantment.SHARPNESS) + 1, 8);
 			meta.addEnchant(Enchantment.SHARPNESS, level, true);
+			meta.itemName(
+					Component.text(getName())
+							.appendSpace()
+							.append(Component.translatable("enchantment.level." + level).color(NamedTextColor.RED))
+			);
 		}
 		meta.getPersistentDataContainer().set(getKey(), PersistentDataType.LONG, Instant.now().toEpochMilli());
 		item.setItemMeta(meta);
