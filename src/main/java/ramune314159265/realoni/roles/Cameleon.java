@@ -4,6 +4,10 @@ import dev.iiahmed.disguise.Disguise;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.skills.Skill;
+import ramune314159265.realoni.skills.Tongue;
+
+import java.util.List;
 
 public class Cameleon extends Oni {
 	public Cameleon(Player player) {
@@ -18,6 +22,13 @@ public class Cameleon extends Oni {
 				.setName(getNameTag())
 				.build();
 		Realoni.disguiseProvider.disguise(player, disguise);
+	}
+
+	@Override
+	public List<Skill> getSkills() {
+		return List.of(
+				new Tongue()
+		);
 	}
 
 	@Override

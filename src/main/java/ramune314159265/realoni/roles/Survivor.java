@@ -5,6 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import ramune314159265.realoni.skills.Skill;
+
+import java.util.List;
 
 public class Survivor extends RoleAbstract {
 	public Survivor(Player player) {
@@ -24,6 +27,11 @@ public class Survivor extends RoleAbstract {
 	@Override
 	public boolean isSurvivor() {
 		return true;
+	}
+
+	@Override
+	public List<Skill> getSkills() {
+		return List.of();
 	}
 
 	@Override
