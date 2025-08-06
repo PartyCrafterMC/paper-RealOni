@@ -1,5 +1,7 @@
 package ramune314159265.realoni;
 
+import dev.iiahmed.disguise.DisguiseManager;
+import dev.iiahmed.disguise.DisguiseProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Difficulty;
@@ -13,12 +15,15 @@ import ramune314159265.realoni.commands.RealOniCommand;
 import ramune314159265.realoni.items.CustomItem;
 import ramune314159265.realoni.items.Items;
 
+import java.util.regex.Pattern;
+
 public final class Realoni extends JavaPlugin {
 	public static final int worldSize = 800;
 	public static World defaultWorld;
 	public static ChunkyAPI chunky;
 	public static Game processingGame;
 	private static Realoni instance;
+	public static final DisguiseProvider disguiseProvider = DisguiseManager.getProvider();
 
 	public static Realoni getInstance() {
 		return instance;
@@ -37,7 +42,6 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 		defaultWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
 		defaultWorld.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
-		defaultWorld.setGameRule(GameRule.KEEP_INVENTORY, true);
 		defaultWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
 		defaultWorld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 		defaultWorld.setGameRule(GameRule.FALL_DAMAGE, false);
@@ -72,6 +76,9 @@ public final class Realoni extends JavaPlugin {
 		instance = this;
 		defaultWorld = getServer().getWorlds().getFirst();
 		chunky = getServer().getServicesManager().load(ChunkyAPI.class);
+		DisguiseManager.initialize(this, true);
+		disguiseProvider.allowOverrideChat(false);
+		disguiseProvider.setNamePattern(Pattern.compile("(.+?)"));
 
 		this.getServer().getPluginManager().registerEvents(new PluginListener(), this);
 		this.getCommand("realoni").setExecutor(new RealOniCommand());

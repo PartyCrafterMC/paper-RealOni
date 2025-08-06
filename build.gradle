@@ -23,12 +23,17 @@ repositories {
     maven {
         url 'https://repo.xenondevs.xyz/releases'
     }
+    maven {
+        name = "gravemc-repo"
+        url = "https://repo.gravemc.net/releases/"
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
     compileOnly("org.popcraft:chunky-common:1.4.40")
     implementation "xyz.xenondevs.invui:invui:1.46"
+    implementation("dev.iiahmed:ModernDisguise:4.3")
 }
 
 tasks {
