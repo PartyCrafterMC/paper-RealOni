@@ -45,6 +45,7 @@ public final class Realoni extends JavaPlugin {
 		defaultWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
 		defaultWorld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 		defaultWorld.setGameRule(GameRule.FALL_DAMAGE, false);
+		defaultWorld.setGameRule(GameRule.LOCATOR_BAR, false);
 		defaultWorld.getWorldBorder().setDamageAmount(0);
 		defaultWorld.getWorldBorder().setCenter(0, 0);
 		defaultWorld.getWorldBorder().setSize(worldSize);
