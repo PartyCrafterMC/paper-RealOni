@@ -11,6 +11,7 @@ import java.util.List;
 public class Roles {
 	public static final List<RoleEntry> roleList = List.of(
 			new RoleEntry(Survivor.class, "プレイヤー", Material.IRON_SWORD, NamedTextColor.YELLOW),
+			new RoleEntry(Spectator.class, "観戦者", Material.SPYGLASS, NamedTextColor.GRAY),
 			new RoleEntry(Cameleon.class, "11の鬼", Material.NETHERITE_AXE, NamedTextColor.GREEN)
 	);
 	public static HashMap<Player, RoleEntry> playerRoleEntry = new HashMap<>();
