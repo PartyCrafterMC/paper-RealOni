@@ -1,7 +1,7 @@
 package ramune314159265.realoni;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.GameMode;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import ramune314159265.realoni.roles.Spectator;
 
 import java.util.Objects;
 
@@ -16,6 +17,14 @@ public class PluginListener implements Listener {
 	@EventHandler
 	public void onPlayerJoined(PlayerJoinEvent e) {
 		Realoni.playerInitialize(e.getPlayer());
+		if (Objects.isNull(Realoni.processingGame)) {
+			return;
+		}
+		if (Realoni.processingGame.playerRoles.containsKey(e.getPlayer())) {
+			return;
+		}
+		e.getPlayer().sendMessage(Component.text("ゲームが進行中です(スペクテイターモードになりました)").color(NamedTextColor.GREEN));
+		Realoni.processingGame.playerInitialize(e.getPlayer(), new Spectator(e.getPlayer()));
 	}
 
 	@EventHandler
@@ -25,14 +34,16 @@ public class PluginListener implements Listener {
 
 	@EventHandler
 	public void onPlayerDied(PlayerDeathEvent e) {
-		e.getPlayer().setGameMode(GameMode.SPECTATOR);
 		if (Objects.isNull(Realoni.processingGame)) {
 			return;
 		}
+		if(!Objects.isNull(Realoni.processingGame.getPlayerRole(e.getPlayer()).getDeathMessage())){
+			Realoni.broadcast(Component.text(
+					Realoni.processingGame.getPlayerRole(e.getPlayer()).getDeathMessage()
+			));
+		}
 
-		Realoni.broadcast(Component.text(
-				Realoni.processingGame.getPlayerRole(e.getPlayer()).getDeathMessage()
-		));
+		Realoni.processingGame.playerInitialize(e.getPlayer(), new Spectator(e.getPlayer()));
 	}
 
 	@EventHandler

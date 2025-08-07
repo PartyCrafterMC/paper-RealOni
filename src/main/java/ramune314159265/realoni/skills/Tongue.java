@@ -71,7 +71,15 @@ public class Tongue extends Skill {
 				try {
 					LivingEntity nearestEntity = tongueTipLocation.getNearbyLivingEntities(catchableDistance)
 							.stream()
-							.filter(e -> !e.equals(player))
+							.filter(e -> {
+								if(e.equals(player)){
+									return false;
+								}
+								if (!(e instanceof Player p)) {
+									return true;
+								}
+								return Realoni.processingGame.getPlayerRole(p).isSurvivor();
+							})
 							.sorted(Comparator.comparing(e -> e.getLocation().distance(tongueTipLocation), Comparator.naturalOrder()))
 							.toList().getFirst();
 					caughtEntity.set(nearestEntity);

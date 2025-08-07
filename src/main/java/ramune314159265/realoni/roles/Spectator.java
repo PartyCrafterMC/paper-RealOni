@@ -1,0 +1,38 @@
+package ramune314159265.realoni.roles;
+
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import ramune314159265.realoni.skills.Skill;
+
+import java.util.List;
+
+public class Spectator extends RoleAbstract {
+	public Spectator(Player player) {
+		this.player = player;
+	}
+
+	@Override
+	public String getDeathMessage() {
+		return null;
+	}
+
+	@Override
+	public String getNameTag() {
+		return null;
+	}
+
+	@Override
+	public boolean isSurvivor() {
+		return false;
+	}
+
+	@Override
+	public List<Skill> getSkills() {
+		return List.of();
+	}
+
+	@Override
+	public void initialize() {
+		player.setGameMode(GameMode.SPECTATOR);
+	}
+}

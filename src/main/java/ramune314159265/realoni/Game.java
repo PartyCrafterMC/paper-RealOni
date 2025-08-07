@@ -46,23 +46,10 @@ public class Game {
 
 		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
 			try {
-				playerRoles.put(p, Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p));
+				RoleAbstract role = Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p);
+				playerInitialize(p, role);
 			} catch (Exception ignored) {
 			}
-
-			RoleAbstract role = getPlayerRole(p);
-			Location cageLocation = Cage.getSpawnLocation();
-			if (!role.isSurvivor()) {
-				p.teleport(cageLocation);
-			} else {
-				p.teleport(new Location(
-						cageLocation.getWorld(),
-						cageLocation.getBlockX() + 5,
-						Ground.getY(cageLocation.getWorld(), cageLocation.getBlockX() + 5, cageLocation.getBlockZ()) + 1,
-						cageLocation.getBlockZ()
-				));
-			}
-			role.initialize();
 		}
 
 		TimerTask task = new TimerTask() {
@@ -85,6 +72,23 @@ public class Game {
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(task, 0, 1000);
+	}
+
+	public void playerInitialize(Player player, RoleAbstract role) {
+		playerRoles.put(player, role);
+
+		Location cageLocation = Cage.getSpawnLocation();
+		if (!role.isSurvivor()) {
+			player.teleport(cageLocation);
+		} else {
+			player.teleport(new Location(
+					cageLocation.getWorld(),
+					cageLocation.getBlockX() + 5,
+					Ground.getY(cageLocation.getWorld(), cageLocation.getBlockX() + 5, cageLocation.getBlockZ()) + 1,
+					cageLocation.getBlockZ()
+			));
+		}
+		role.initialize();
 	}
 
 	public RoleAbstract getPlayerRole(Player player) {
