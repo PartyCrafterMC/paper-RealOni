@@ -85,6 +85,9 @@ public class EnergyBlade extends CustomItem implements Listener {
 		if (!(e.getDamager() instanceof Player attacker)) return;
 
 		ItemStack item = attacker.getInventory().getItemInMainHand();
+		if(item.isEmpty()) {
+			return;
+		}
 		ItemMeta meta = item.getItemMeta();
 
 		String name = ((TextComponent) meta.itemName()).content();

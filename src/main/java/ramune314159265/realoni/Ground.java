@@ -13,14 +13,13 @@ import java.util.Set;
 
 public class Ground {
 	private static final Set<Material> IGNORED_BLOCKS = Sets.newHashSet(Iterables.concat(
-			Tag.FLOWER_POTS.getValues(),
+			Tag.FLOWERS.getValues(),
 			Tag.LEAVES.getValues(),
 			Tag.REPLACEABLE.getValues(),
 			new HashSet<>(Arrays.asList(
 					Material.SUGAR_CANE,
 					Material.GLASS
 			))));
-
 
 	public static int getY(World world, int x, int z) {
 		for (int y = world.getMaxHeight() - 1; y >= 0; y--) {
