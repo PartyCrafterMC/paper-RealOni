@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Projectile;
 import org.bukkit.entity.ThrowableProjectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -60,13 +59,13 @@ public class Grenade extends CustomItem implements Listener {
 
 	@EventHandler
 	public void onProjectileHit(ProjectileHitEvent e) {
-		if(e.getEntity().getType() != EntityType.SNOWBALL) {
+		if (e.getEntity().getType() != EntityType.SNOWBALL) {
 			return;
 		}
 		ThrowableProjectile entity = (ThrowableProjectile) e.getEntity();
 
 		String name = ((TextComponent) entity.getItem().getItemMeta().itemName()).content();
-		if(!name.equals(getName())) {
+		if (!name.equals(getName())) {
 			return;
 		}
 		entity.getLocation().getWorld().createExplosion(entity.getLocation(), 6f, true, true);

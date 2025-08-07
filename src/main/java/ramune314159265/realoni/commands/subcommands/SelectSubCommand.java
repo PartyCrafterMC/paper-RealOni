@@ -29,7 +29,7 @@ public class SelectSubCommand extends SubCommand {
 				.findFirst()
 				.orElse(Roles.roleList.getFirst());
 		Roles.setPlayerRoleEntry(player, roleEntry);
-		sender.sendMessage(Component.text(roleEntry.name() + " になりました"));
+		sender.sendMessage(Component.text(roleEntry.name() + " を選択しました"));
 	}
 
 	@Override

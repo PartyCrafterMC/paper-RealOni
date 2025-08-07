@@ -3,7 +3,6 @@ package ramune314159265.realoni.items;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -14,19 +13,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemRarity;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Realoni;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 
 public class EnergyBlade extends CustomItem implements Listener {
 	@Override
@@ -85,7 +80,7 @@ public class EnergyBlade extends CustomItem implements Listener {
 		if (!(e.getDamager() instanceof Player attacker)) return;
 
 		ItemStack item = attacker.getInventory().getItemInMainHand();
-		if(item.isEmpty()) {
+		if (item.isEmpty()) {
 			return;
 		}
 		ItemMeta meta = item.getItemMeta();
@@ -97,7 +92,7 @@ public class EnergyBlade extends CustomItem implements Listener {
 
 		long lastUsed = meta.getPersistentDataContainer().getOrDefault(getKey(), PersistentDataType.LONG, Instant.now().toEpochMilli());
 
-		if(5 * 1000 < Instant.now().toEpochMilli() - lastUsed) {
+		if (5 * 1000 < Instant.now().toEpochMilli() - lastUsed) {
 			meta.addEnchant(Enchantment.SHARPNESS, 1, true);
 			meta.itemName(
 					Component.text(getName())

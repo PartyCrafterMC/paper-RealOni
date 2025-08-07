@@ -7,8 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.entity.*;
+import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Transformation;
@@ -29,7 +31,7 @@ public class Tongue extends Skill {
 			Tag.LEAVES.getValues(),
 			Tag.REPLACEABLE.getValues(),
 			Tag.CROPS.getValues(),
-			new HashSet<>(Arrays.asList(
+			new HashSet<>(List.of(
 					Material.SUGAR_CANE
 			))));
 
@@ -49,33 +51,34 @@ public class Tongue extends Skill {
 
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
-			if(maxLength <= tongueLength.addAndGet(tongueLengthVector.get() / 20)) {
+			if (maxLength <= tongueLength.addAndGet(tongueLengthVector.get() / 20)) {
 				tongueLengthVector.set(-speed);
 			}
-			if(tongueLength.get() < 0) {
-				if(!Objects.isNull(caughtEntity.get())) {
+			if (tongueLength.get() < 0) {
+				if (!Objects.isNull(caughtEntity.get())) {
 					caughtEntity.get().damage(4, player);
-					caughtEntity.get().setVelocity(new Vector(0, 1.3, 0));
+					caughtEntity.get().setVelocity(new Vector(0, 1.1, 0));
 				}
 				tongueDisplay.remove();
 				task.cancel();
 				return;
 			}
 			Location tongueTipLocation = offsetWithLocalVector(player.getEyeLocation(), 0, -0.2, tongueLength.get());
-			if(0 < tongueLengthVector.get() && !Objects.isNull(player.getWorld().rayTraceBlocks(tongueTipLocation, player.getLocation().getDirection().normalize(), (tongueLengthVector.get() / 20) / 2))) {
+			if (0 < tongueLengthVector.get() && !Objects.isNull(player.getWorld().rayTraceBlocks(tongueTipLocation, player.getLocation().getDirection().normalize(), (tongueLengthVector.get() / 20) / 2))) {
 				tongueLengthVector.set(-speed);
 			}
-			if(Objects.isNull(caughtEntity.get()) && !tongueTipLocation.getNearbyLivingEntities(catchableDistance).isEmpty()) {
+			if (Objects.isNull(caughtEntity.get()) && !tongueTipLocation.getNearbyLivingEntities(catchableDistance).isEmpty()) {
 				try {
 					LivingEntity nearestEntity = tongueTipLocation.getNearbyLivingEntities(catchableDistance)
 							.stream()
 							.filter(e -> !e.equals(player))
-							.sorted(Comparator.comparing(e-> e.getLocation().distance(tongueTipLocation),Comparator.naturalOrder()))
+							.sorted(Comparator.comparing(e -> e.getLocation().distance(tongueTipLocation), Comparator.naturalOrder()))
 							.toList().getFirst();
 					caughtEntity.set(nearestEntity);
-				} catch (Exception ignored) {}
+				} catch (Exception ignored) {
+				}
 			}
-			if(!Objects.isNull(caughtEntity.get())) {
+			if (!Objects.isNull(caughtEntity.get())) {
 				caughtEntity.get().teleport(tongueTipLocation);
 			}
 			tongueDisplay.setTransformation(new Transformation(

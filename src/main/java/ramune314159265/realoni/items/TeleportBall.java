@@ -6,13 +6,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -59,18 +57,18 @@ public class TeleportBall extends CustomItem implements Listener {
 
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
-		if(!(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) || !e.hasItem()) {
+		if (!(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) || !e.hasItem()) {
 			return;
 		}
-		if(e.getItem().getType() != Material.ENDER_EYE) {
+		if (e.getItem().getType() != Material.ENDER_EYE) {
 			return;
 		}
 		String name = ((TextComponent) getItemStack().getItemMeta().itemName()).content();
-		if(!name.equals(getName())) {
+		if (!name.equals(getName())) {
 			return;
 		}
 		e.setCancelled(true);
-		if(Objects.isNull(Realoni.processingGame)) {
+		if (Objects.isNull(Realoni.processingGame)) {
 			return;
 		}
 
@@ -79,12 +77,13 @@ public class TeleportBall extends CustomItem implements Listener {
 					.stream()
 					.filter(p -> !p.equals(e.getPlayer()))
 					.filter(p -> Realoni.processingGame.getPlayerRole(p).isSurvivor())
-					.sorted(Comparator.comparing(p-> p.getLocation().distance(e.getPlayer().getLocation()),Comparator.naturalOrder()))
+					.sorted(Comparator.comparing(p -> p.getLocation().distance(e.getPlayer().getLocation()), Comparator.naturalOrder()))
 					.toList().getFirst();
 			e.getPlayer().teleport(nearestSurvivor);
 			e.getItem().setAmount(e.getItem().getAmount() - 1);
 
 			e.getPlayer().playSound(e.getPlayer(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.7f, 1f);
-		} catch (Exception ignored) {}
+		} catch (Exception ignored) {
+		}
 	}
 }

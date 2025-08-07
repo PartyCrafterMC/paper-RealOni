@@ -19,11 +19,11 @@ import java.util.regex.Pattern;
 
 public final class Realoni extends JavaPlugin {
 	public static final int worldSize = 800;
+	public static final DisguiseProvider disguiseProvider = DisguiseManager.getProvider();
 	public static World defaultWorld;
 	public static ChunkyAPI chunky;
 	public static Game processingGame;
 	private static Realoni instance;
-	public static final DisguiseProvider disguiseProvider = DisguiseManager.getProvider();
 
 	public static Realoni getInstance() {
 		return instance;

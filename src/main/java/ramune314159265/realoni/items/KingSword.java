@@ -3,13 +3,11 @@ package ramune314159265.realoni.items;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -76,14 +74,14 @@ public class KingSword extends CustomItem implements Listener {
 		if (!(e.getEntity() instanceof Player victim)) return;
 		if (!(e.getDamager() instanceof Player attacker)) return;
 
-		if(Objects.isNull(Realoni.processingGame)) {
+		if (Objects.isNull(Realoni.processingGame)) {
 			return;
 		}
-		if(Realoni.processingGame.getPlayerRole(victim).isSurvivor()) {
+		if (Realoni.processingGame.getPlayerRole(victim).isSurvivor()) {
 			return;
 		}
 		String name = ((TextComponent) attacker.getInventory().getItemInMainHand().getItemMeta().itemName()).content();
-		if(!name.equals(getName())) {
+		if (!name.equals(getName())) {
 			return;
 		}
 
@@ -96,7 +94,7 @@ public class KingSword extends CustomItem implements Listener {
 
 		victim.getWorld().spawnParticle(
 				Particle.END_ROD,
-				victim.getLocation().add(0,1,0),
+				victim.getLocation().add(0, 1, 0),
 				8, 0.1, 0.1, 0.1, 0.1
 		);
 	}
