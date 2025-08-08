@@ -79,6 +79,7 @@ public class MimicMobs extends CustomItem implements Listener {
 			Zombie zombie = (Zombie) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE);
 			zombie.setShouldBurnInDay(false);
 			zombie.getEquipment().setHelmet(head, true);
+			zombie.getEquipment().setHelmetDropChance(0);
 			zombie.getEquipment().setChestplate(chestPlate,true);
 			zombie.getEquipment().setLeggings(leggings,true);
 			zombie.getEquipment().setBoots(boots,true);
@@ -91,6 +92,7 @@ public class MimicMobs extends CustomItem implements Listener {
 			Skeleton skeleton = (Skeleton) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.SKELETON);
 			skeleton.setShouldBurnInDay(false);
 			skeleton.getEquipment().setHelmet(head, true);
+			skeleton.getEquipment().setHelmetDropChance(0);
 			skeleton.getEquipment().setChestplate(chestPlate,true);
 			skeleton.getEquipment().setLeggings(leggings,true);
 			skeleton.getEquipment().setBoots(boots,true);
