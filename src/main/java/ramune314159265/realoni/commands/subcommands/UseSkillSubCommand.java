@@ -31,8 +31,9 @@ public class UseSkillSubCommand extends SubCommand {
 					.toList().getFirst();
 
 			skill.use(player);
-		} catch (Exception ignored) {
+		} catch (Exception e) {
 			sender.sendMessage(Component.text("技が存在しません").color(NamedTextColor.RED));
+			throw e;
 		}
 	}
 
