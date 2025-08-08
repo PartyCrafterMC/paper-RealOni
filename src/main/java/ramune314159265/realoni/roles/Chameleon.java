@@ -9,8 +9,8 @@ import ramune314159265.realoni.skills.Tongue;
 
 import java.util.List;
 
-public class Cameleon extends Oni {
-	public Cameleon(Player player) {
+public class Chameleon extends Oni {
+	public Chameleon(Player player) {
 		super(player);
 	}
 
