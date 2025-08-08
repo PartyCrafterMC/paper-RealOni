@@ -8,7 +8,8 @@ public class Items {
 			new GlassSword(),
 			new Grenade(),
 			new KingSword(),
-			new EnergyBlade()
+			new EnergyBlade(),
+			new MimicMobs()
 	};
 
 	public static void initialize() {

@@ -26,14 +26,6 @@ public class Tongue extends Skill {
 	static final float maxLength = 15;
 	static final float speed = 40;
 	static final float catchableDistance = 0.8f;
-	private static final Set<Material> IGNORED_BLOCKS = Sets.newHashSet(Iterables.concat(
-			Tag.FLOWERS.getValues(),
-			Tag.LEAVES.getValues(),
-			Tag.REPLACEABLE.getValues(),
-			Tag.CROPS.getValues(),
-			new HashSet<>(List.of(
-					Material.SUGAR_CANE
-			))));
 
 	@Override
 	public String getName() {
@@ -64,7 +56,7 @@ public class Tongue extends Skill {
 				return;
 			}
 			Location tongueTipLocation = offsetWithLocalVector(player.getEyeLocation(), 0, -0.2, tongueLength.get());
-			if (0 < tongueLengthVector.get() && !Objects.isNull(player.getWorld().rayTraceBlocks(tongueTipLocation, player.getLocation().getDirection().normalize(), (tongueLengthVector.get() / 20) / 2))) {
+			if (0 < tongueLengthVector.get() && (!tongueTipLocation.getBlock().isPassable() && !Objects.isNull(player.getWorld().rayTraceBlocks(tongueTipLocation, player.getLocation().getDirection().normalize(), (tongueLengthVector.get() / 20) / 2)))) {
 				tongueLengthVector.set(-speed);
 			}
 			if (Objects.isNull(caughtEntity.get()) && !tongueTipLocation.getNearbyLivingEntities(catchableDistance).isEmpty()) {

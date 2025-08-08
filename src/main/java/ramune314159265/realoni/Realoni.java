@@ -15,6 +15,7 @@ import ramune314159265.realoni.commands.RealOniCommand;
 import ramune314159265.realoni.items.CustomItem;
 import ramune314159265.realoni.items.Items;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class Realoni extends JavaPlugin {
@@ -62,7 +63,9 @@ public final class Realoni extends JavaPlugin {
 		player.teleport(InitialRoom.getSpawnLocation());
 		player.setGameMode(GameMode.ADVENTURE);
 		for (CustomItem i : Items.customItems) {
-			player.discoverRecipe(i.getKey());
+			if(!Objects.isNull(i.getKey())) {
+				player.discoverRecipe(i.getKey());
+			}
 		}
 	}
 
