@@ -40,4 +40,9 @@ public class Oni extends RoleAbstract {
 	public void exit() {
 
 	}
+
+	@Override
+	public void tick() {
+
+	}
 }

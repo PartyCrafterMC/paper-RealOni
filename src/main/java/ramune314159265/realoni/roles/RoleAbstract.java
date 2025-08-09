@@ -20,4 +20,6 @@ abstract public class RoleAbstract {
 	public abstract void initialize();
 
 	public abstract void exit();
+
+	public abstract void tick();
 }

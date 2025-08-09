@@ -53,4 +53,9 @@ public class Survivor extends RoleAbstract {
 	public void exit() {
 
 	}
+
+	@Override
+	public void tick() {
+
+	}
 }

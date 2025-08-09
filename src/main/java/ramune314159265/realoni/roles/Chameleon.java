@@ -2,6 +2,7 @@ package ramune314159265.realoni.roles;
 
 import dev.iiahmed.disguise.Disguise;
 import io.papermc.paper.datacomponent.item.Equippable;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -14,8 +15,10 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import ramune314159265.realoni.Ground;
 import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.items.Items;
 import ramune314159265.realoni.skills.Mimicry;
@@ -55,23 +58,51 @@ public class Chameleon extends Oni {
 		}
 	}
 
+	@Override
+	public void tick() {
+		EntityEquipment equipment = player.getEquipment();
+		if(equipment.getChestplate().getType() != Material.LEATHER_CHESTPLATE) {
+			return;
+		}
+		if(equipment.getLeggings().getType() != Material.LEATHER_LEGGINGS) {
+			return;
+		}
+		if(equipment.getBoots().getType() != Material.LEATHER_BOOTS) {
+			return;
+		}
+		Color color = Ground.getFromLocation(player.getLocation()).getBlock().getBlockData().getMapColor();
+
+		LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) equipment.getChestplate().getItemMeta();
+		chestplateMeta.setColor(color);
+		equipment.getChestplate().setItemMeta(chestplateMeta);
+		LeatherArmorMeta leggingsMeta = (LeatherArmorMeta) equipment.getLeggings().getItemMeta();
+		leggingsMeta.setColor(color);
+		equipment.getLeggings().setItemMeta(leggingsMeta);
+		LeatherArmorMeta bootsMeta = (LeatherArmorMeta) equipment.getBoots().getItemMeta();
+		bootsMeta.setColor(color);
+		equipment.getBoots().setItemMeta(bootsMeta);
+	}
+
 	public void setInventory() {
-		ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE);
+		ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 		ItemMeta chestplateMeta = chestplate.getItemMeta();
-		chestplateMeta.addEnchant(Enchantment.PROTECTION, 2, true);
+		chestplateMeta.addEnchant(Enchantment.PROTECTION, 5, true);
+		chestplateMeta.setEnchantmentGlintOverride(false);
 		chestplateMeta.setUnbreakable(true);
 		chestplate.setItemMeta(chestplateMeta);
-
-		ItemStack leggings = new ItemStack(Material.NETHERITE_LEGGINGS);
+		ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemMeta leggingsMeta = leggings.getItemMeta();
-		leggingsMeta.addEnchant(Enchantment.PROTECTION, 3, true);
+		leggingsMeta.addEnchant(Enchantment.PROTECTION, 5, true);
+		leggingsMeta.addEnchant(Enchantment.SWIFT_SNEAK, 2, true);
+		leggingsMeta.setEnchantmentGlintOverride(false);
 		leggingsMeta.setUnbreakable(true);
 		leggings.setItemMeta(leggingsMeta);
 
-		ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS);
+		ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
 		ItemMeta bootsMeta = boots.getItemMeta();
-		bootsMeta.addEnchant(Enchantment.PROTECTION, 3, true);
-		bootsMeta.addEnchant(Enchantment.FEATHER_FALLING, 3, true);
+		bootsMeta.addEnchant(Enchantment.PROTECTION, 5, true);
+		bootsMeta.addEnchant(Enchantment.FEATHER_FALLING, 5, true);
+		bootsMeta.setEnchantmentGlintOverride(false);
 		bootsMeta.addAttributeModifier(
 				Attribute.MOVEMENT_SPEED,
 				new AttributeModifier(NamespacedKey.minecraft(""), 1d, AttributeModifier.Operation.ADD_SCALAR)
@@ -122,6 +153,7 @@ public class Chameleon extends Oni {
 		equipment.setLeggings(leggings);
 		equipment.setBoots(boots);
 		inv.addItem(new ItemStack(Material.COOKIE, 64));
+		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 		inv.addItem(new ItemStack(Material.FLINT_AND_STEEL));
 		inv.addItem(new ItemStack(Material.BEDROCK, 64));
 		inv.addItem(new ItemStack(Material.WATER_BUCKET));

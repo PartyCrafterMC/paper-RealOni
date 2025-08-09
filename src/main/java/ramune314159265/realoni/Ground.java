@@ -2,6 +2,7 @@ package ramune314159265.realoni;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World;
@@ -28,5 +29,16 @@ public class Ground {
 			}
 		}
 		return 0;
+	}
+
+	public static Location getFromLocation(Location location) {
+		for (int y = location.getBlockY(); y >= 0; y--) {
+			Block block = location.getWorld().getBlockAt(location.getBlockX(), y, location.getBlockZ());
+
+			if (!block.isPassable() && !IGNORED_BLOCKS.contains(block.getType())) {
+				return new Location(location.getWorld(), location.getBlockX(), y, location.getBlockZ());
+			}
+		}
+		return new Location(location.getWorld(), location.getBlockX(), 0, location.getBlockZ());
 	}
 }

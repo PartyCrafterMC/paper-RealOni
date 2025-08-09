@@ -7,6 +7,8 @@ import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.roles.RoleAbstract;
 import ramune314159265.realoni.roles.Roles;
 import ramune314159265.realoni.roles.Survivor;
@@ -52,7 +54,8 @@ public class Game {
 			}
 		}
 
-		TimerTask task = new TimerTask() {
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				Duration duration = Duration.between(LocalDateTime.now(), releastAt);
 				for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
@@ -68,10 +71,12 @@ public class Game {
 					cancel();
 				}
 			}
-		};
+		}, 0, 1000);
 
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(task, 0, 1000);
+		BukkitScheduler openExec = Bukkit.getScheduler();
+		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
+			playerRoles.values().forEach(RoleAbstract::tick);
+		}, 1, 1);
 	}
 
 	public void playerInitialize(Player player, RoleAbstract role) {

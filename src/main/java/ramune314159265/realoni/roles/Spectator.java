@@ -41,4 +41,9 @@ public class Spectator extends RoleAbstract {
 	public void exit() {
 
 	}
+
+	@Override
+	public void tick() {
+
+	}
 }
