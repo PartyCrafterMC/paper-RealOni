@@ -1,5 +1,6 @@
 package ramune314159265.realoni.skills;
 
+import dev.iiahmed.disguise.Disguise;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
@@ -70,6 +71,10 @@ public class Mimicry extends Skill {
 		targetPlayer.getLocation().getWorld().spawnParticle(
 				Particle.CLOUD, targetPlayer.getLocation(), 100, 0.1, 1, 0.1
 		);
+		Disguise disguise = Disguise.builder()
+				.setSkin(targetPlayer.getUniqueId())
+				.build();
+		Realoni.disguiseProvider.disguise(player, disguise);
 
 		AtomicInteger health = new AtomicInteger(5);
 		ArmorStand fixedPlatform = (ArmorStand) player.getLocation().getWorld().spawnEntity(player.getLocation().add(0, 20 ,0), EntityType.ARMOR_STAND);
@@ -124,6 +129,8 @@ public class Mimicry extends Skill {
 				playerEquipment.setChestplate(savedEquipments[1]);
 				playerEquipment.setLeggings(savedEquipments[2]);
 				playerEquipment.setBoots(savedEquipments[3]);
+				Realoni.disguiseProvider.undisguise(player);
+				Realoni.disguiseProvider.disguise(player, Realoni.processingGame.getPlayerRole(player).getDisguise());
 				targetPlayer.removePotionEffect(PotionEffectType.RESISTANCE);
 				player.removePotionEffect(PotionEffectType.RESISTANCE);
 				targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 3 * 20, 0, false, false, true));

@@ -1,5 +1,6 @@
 package ramune314159265.realoni.roles;
 
+import dev.iiahmed.disguise.Disguise;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,8 +21,8 @@ public class Survivor extends RoleAbstract {
 	}
 
 	@Override
-	public String getNameTag() {
-		return null;
+	public Disguise getDisguise() {
+		return Disguise.builder().build();
 	}
 
 	@Override

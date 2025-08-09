@@ -1,5 +1,6 @@
 package ramune314159265.realoni.roles;
 
+import dev.iiahmed.disguise.Disguise;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.skills.Skill;
@@ -17,8 +18,8 @@ public class Spectator extends RoleAbstract {
 	}
 
 	@Override
-	public String getNameTag() {
-		return null;
+	public Disguise getDisguise() {
+		return Disguise.builder().build();
 	}
 
 	@Override

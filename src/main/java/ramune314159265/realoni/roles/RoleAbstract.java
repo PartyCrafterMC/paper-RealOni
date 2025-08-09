@@ -1,5 +1,6 @@
 package ramune314159265.realoni.roles;
 
+import dev.iiahmed.disguise.Disguise;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.skills.Skill;
 
@@ -10,7 +11,7 @@ abstract public class RoleAbstract {
 
 	public abstract String getDeathMessage();
 
-	public abstract String getNameTag();
+	public abstract Disguise getDisguise();
 
 	public abstract boolean isSurvivor();
 

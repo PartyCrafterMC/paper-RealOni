@@ -33,7 +33,7 @@ public class Chameleon extends Oni {
 	@Override
 	public void initialize() {
 		Disguise disguise = Disguise.builder()
-				.setName(getNameTag())
+				.setName("11の鬼")
 				.build();
 		Realoni.disguiseProvider.disguise(player, disguise);
 
@@ -142,7 +142,9 @@ public class Chameleon extends Oni {
 	}
 
 	@Override
-	public String getNameTag() {
-		return "11の鬼";
+	public Disguise getDisguise() {
+		return Disguise.builder()
+				.setName("11の鬼")
+				.build();
 	}
 }
