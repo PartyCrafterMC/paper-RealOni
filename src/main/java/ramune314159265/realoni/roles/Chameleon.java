@@ -14,6 +14,8 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.items.Items;
 import ramune314159265.realoni.skills.Mimicry;
@@ -37,9 +39,20 @@ public class Chameleon extends Oni {
 
 		player.setGameMode(GameMode.SURVIVAL);
 		setInventory();
+		player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false, true));
 		AttributeInstance healthAttribute = player.getAttribute(Attribute.MAX_HEALTH);
-		healthAttribute.addModifier(new AttributeModifier(NamespacedKey.minecraft(""), 40d, AttributeModifier.Operation.ADD_NUMBER));
+		healthAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("chameleon_health", Realoni.getInstance()), 40d, AttributeModifier.Operation.ADD_NUMBER));
 		player.setHealth(60);
+	}
+
+	@Override
+	public void exit() {
+		try {
+			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+			player.getAttribute(Attribute.MAX_HEALTH).removeModifier(NamespacedKey.fromString("chameleon_health", Realoni.getInstance()));
+			player.setHealth(60);
+		} catch (Exception ignored) {
+		}
 	}
 
 	public void setInventory() {

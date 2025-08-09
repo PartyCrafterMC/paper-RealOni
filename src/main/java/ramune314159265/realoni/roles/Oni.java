@@ -34,4 +34,9 @@ public class Oni extends RoleAbstract {
 	public void initialize() {
 
 	}
+
+	@Override
+	public void exit() {
+
+	}
 }

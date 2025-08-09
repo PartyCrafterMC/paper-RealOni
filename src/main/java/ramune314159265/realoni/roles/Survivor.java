@@ -47,4 +47,9 @@ public class Survivor extends RoleAbstract {
 		inv.setItem(4, new ItemStack(Material.COOKIE, 15));
 		inv.setItem(5, new ItemStack(Material.TORCH, 64));
 	}
+
+	@Override
+	public void exit() {
+
+	}
 }

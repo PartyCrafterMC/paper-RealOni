@@ -17,4 +17,6 @@ abstract public class RoleAbstract {
 	public abstract List<Skill> getSkills();
 
 	public abstract void initialize();
+
+	public abstract void exit();
 }

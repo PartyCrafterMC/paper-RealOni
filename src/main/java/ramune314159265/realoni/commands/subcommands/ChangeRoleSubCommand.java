@@ -33,11 +33,12 @@ public class ChangeRoleSubCommand extends SubCommand{
 		Roles.setPlayerRoleEntry(player, roleEntry);
 		try {
 			RoleAbstract role = Roles.getPlayerRoleEntry(player).cls().getDeclaredConstructor(Player.class).newInstance(player);
+			Realoni.processingGame.getPlayerRole(player).exit();
 			Realoni.processingGame.playerRoles.put(player, role);
+			sender.sendMessage(Component.text(roleEntry.name() + " に変更しました").color(NamedTextColor.GREEN));
 		} catch (Exception ignored) {
 			sender.sendMessage(Component.text("変更に失敗しました").color(NamedTextColor.RED));
 		}
-		sender.sendMessage(Component.text(roleEntry.name() + " に変更しました").color(NamedTextColor.GREEN));
 	}
 
 	@Override

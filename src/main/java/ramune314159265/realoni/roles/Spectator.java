@@ -35,4 +35,9 @@ public class Spectator extends RoleAbstract {
 	public void initialize() {
 		player.setGameMode(GameMode.SPECTATOR);
 	}
+
+	@Override
+	public void exit() {
+
+	}
 }

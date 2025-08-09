@@ -76,6 +76,6 @@ public class Cage {
 	}
 
 	public static Location getSpawnLocation() {
-		return center;
+		return center.toCenterLocation();
 	}
 }
