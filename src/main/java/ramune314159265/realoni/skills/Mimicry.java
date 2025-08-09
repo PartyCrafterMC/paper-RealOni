@@ -123,7 +123,7 @@ public class Mimicry extends Skill {
 						1f, 1f
 				);
 				targetPlayer.getLocation().getWorld().spawnParticle(
-						Particle.BLOCK, targetPlayer.getLocation(), 300, 1, 1, 1, Material.GLASS.createBlockData()
+						Particle.BLOCK, targetPlayer.getLocation(), 300, 1, 1, 1, 1, Material.GLASS.createBlockData(), true
 				);
 				playerEquipment.setHelmet(savedEquipments[0]);
 				playerEquipment.setChestplate(savedEquipments[1]);

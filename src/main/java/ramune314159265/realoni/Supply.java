@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Supply {
 	public static final Material material = Material.BEEHIVE;
-	public static final int defaultSupplyCount = 75;
+	public static final int defaultSupplyCount = 50;
 	private static final List<DropEntry> dropTable = List.of(
 			new DropEntry(0.10, new ItemStack(Material.IRON_BLOCK)),
 			new DropEntry(0.20, new ItemStack(Material.BUCKET)),
