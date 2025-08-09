@@ -76,6 +76,10 @@ public class Game {
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
 			playerRoles.values().forEach(RoleAbstract::tick);
+
+			if(!Realoni.defaultWorld.isDayTime()) {
+				Realoni.defaultWorld.setTime(Realoni.defaultWorld.getTime() + 1);
+			}
 		}, 1, 1);
 	}
 
