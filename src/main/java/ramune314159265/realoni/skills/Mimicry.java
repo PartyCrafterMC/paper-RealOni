@@ -65,17 +65,18 @@ public class Mimicry extends Skill {
 		playerEquipment.setChestplate(Optional.ofNullable(targetPlayer.getEquipment().getChestplate()).orElse(new ItemStack(Material.AIR)));
 		playerEquipment.setLeggings(Optional.ofNullable(targetPlayer.getEquipment().getLeggings()).orElse(new ItemStack(Material.AIR)));
 		playerEquipment.setBoots(Optional.ofNullable(targetPlayer.getEquipment().getBoots()).orElse(new ItemStack(Material.AIR)));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, -1, 1, true));
-
+		player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, -1, 1, false, false, false));
+		targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, -1, 4, false, false, false));
 		targetPlayer.getLocation().getWorld().spawnParticle(
 				Particle.CLOUD, targetPlayer.getLocation(), 100, 0.1, 1, 0.1
 		);
 
 		AtomicInteger health = new AtomicInteger(5);
-		ArmorStand fixedPlatform = (ArmorStand) player.getLocation().getWorld().spawnEntity(player.getLocation().add(0, 15 ,0), EntityType.ARMOR_STAND);
+		ArmorStand fixedPlatform = (ArmorStand) player.getLocation().getWorld().spawnEntity(player.getLocation().add(0, 20 ,0), EntityType.ARMOR_STAND);
 		fixedPlatform.setVisible(false);
 		fixedPlatform.setMarker(true);
-		BlockDisplay flameBlock = (BlockDisplay) player.getLocation().getWorld().spawnEntity(player.getLocation().add(0, 15 ,0), EntityType.BLOCK_DISPLAY);
+		BlockDisplay flameBlock = (BlockDisplay) player.getLocation().getWorld().spawnEntity(player.getLocation().add(0, 20 ,0), EntityType.BLOCK_DISPLAY);
+		flameBlock.setRotation(0, -90);
 		flameBlock.setBlock(flameMaterials[health.get()].createBlockData());
 		flameBlock.setInterpolationDuration(2);
 		Vector3f from = new Vector3f(1, 1, 1).normalize();
@@ -96,13 +97,13 @@ public class Mimicry extends Skill {
 			Quaternionf spin = new Quaternionf().rotateAxis(spinRad, 0, 0, 1);
 			Quaternionf finalRotation = new Quaternionf(spin).mul(rotation);
 			flameBlock.setTransformation(new Transformation(
-					new Vector3f(0,0.75f, -1.1f),
+					new Vector3f(0, 0, (float) -Math.sqrt(3) + 0.5f),
 					new AxisAngle4f(finalRotation),
 					new Vector3f(2, 2, 2),
 					new AxisAngle4f()
 			));
 
-			List<Arrow> arrows = targetPlayer.getLocation().getNearbyEntitiesByType(Arrow.class, 2).stream().toList();
+			List<Arrow> arrows = fixedPlatform.getLocation().getNearbyEntitiesByType(Arrow.class, 2).stream().toList();
 			if(arrows.isEmpty()) {
 				return;
 			}
@@ -117,13 +118,15 @@ public class Mimicry extends Skill {
 						1f, 1f
 				);
 				targetPlayer.getLocation().getWorld().spawnParticle(
-						Particle.BLOCK, targetPlayer.getLocation(), 100, 1, 1, 1, Material.GLASS.createBlockData()
+						Particle.BLOCK, targetPlayer.getLocation(), 300, 1, 1, 1, Material.GLASS.createBlockData()
 				);
 				playerEquipment.setHelmet(savedEquipments[0]);
 				playerEquipment.setChestplate(savedEquipments[1]);
 				playerEquipment.setLeggings(savedEquipments[2]);
 				playerEquipment.setBoots(savedEquipments[3]);
+				targetPlayer.removePotionEffect(PotionEffectType.RESISTANCE);
 				player.removePotionEffect(PotionEffectType.RESISTANCE);
+				targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 3 * 20, 0, false, false, true));
 				task.cancel();
 			}
 			targetPlayer.getLocation().getWorld().playSound(
