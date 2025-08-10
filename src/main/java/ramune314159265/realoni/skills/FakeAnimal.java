@@ -11,7 +11,6 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -20,11 +19,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.roles.RoleAbstract;
 
 import java.time.Instant;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class FakeAnimal extends Skill implements Listener {
 	static final List<EntityType> targetEntities = List.of(
@@ -93,19 +91,22 @@ public class FakeAnimal extends Skill implements Listener {
 		}
 		e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 0.5f, false, true);
 
-		Player player = (Player) e.getDamageSource().getCausingEntity();
+		List<Map.Entry<Player, RoleAbstract>> survivors = Realoni.processingGame.playerRoles.entrySet().stream()
+				.filter(entry -> entry.getValue().isSurvivor())
+				.toList();
+		Player mimicPlayer = survivors.get(new Random().nextInt(survivors.size())).getKey();
 
 		ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 		SkullMeta meta = (SkullMeta) head.getItemMeta();
-		meta.setOwningPlayer(player);
+		meta.setOwningPlayer(mimicPlayer);
 		meta.addAttributeModifier(
 				Attribute.MOVEMENT_SPEED,
 				new AttributeModifier(NamespacedKey.minecraft(""), 0.25d, AttributeModifier.Operation.ADD_SCALAR)
 		);
 		head.setItemMeta(meta);
-		ItemStack chestPlate = Optional.ofNullable(player.getInventory().getChestplate()).orElse(new ItemStack(Material.AIR));
-		ItemStack leggings = Optional.ofNullable(player.getInventory().getLeggings()).orElse(new ItemStack(Material.AIR));
-		ItemStack boots = Optional.ofNullable(player.getInventory().getBoots()).orElse(new ItemStack(Material.AIR));
+		ItemStack chestPlate = Optional.ofNullable(mimicPlayer.getInventory().getChestplate()).orElse(new ItemStack(Material.AIR));
+		ItemStack leggings = Optional.ofNullable(mimicPlayer.getInventory().getLeggings()).orElse(new ItemStack(Material.AIR));
+		ItemStack boots = Optional.ofNullable(mimicPlayer.getInventory().getBoots()).orElse(new ItemStack(Material.AIR));
 		ItemStack supply = new ItemStack(Material.BEEHIVE);
 		ItemMeta supplyMeta = supply.getItemMeta();
 		supplyMeta.itemName(Component.text("物資"));
@@ -123,8 +124,8 @@ public class FakeAnimal extends Skill implements Listener {
 		zombie.getEquipment().setItemInOffHand(supply);
 		zombie.getEquipment().setItemInOffHandDropChance(0.2f);
 		zombie.setCustomNameVisible(true);
-		zombie.customName(Component.text(player.getName()));
+		zombie.customName(Component.text(mimicPlayer.getName()));
 		zombie.setAdult();
-		zombie.setTarget(player);
+		zombie.setTarget(mimicPlayer);
 	}
 }
