@@ -4,10 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -126,6 +123,6 @@ public class FakeAnimal extends Skill implements Listener {
 		zombie.setCustomNameVisible(true);
 		zombie.customName(Component.text(mimicPlayer.getName()));
 		zombie.setAdult();
-		zombie.setTarget(mimicPlayer);
+		zombie.setTarget((Player) e.getDamageSource().getCausingEntity());
 	}
 }
