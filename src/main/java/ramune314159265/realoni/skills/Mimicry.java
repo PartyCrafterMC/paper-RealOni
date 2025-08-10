@@ -112,6 +112,13 @@ public class Mimicry extends Skill {
 			if(arrows.isEmpty()) {
 				return;
 			}
+			if(!(arrows.getFirst().getShooter() instanceof Player)) {
+				arrows.getFirst().remove();
+				return;
+			}
+			if(arrows.getFirst().getShooter().equals(targetPlayer)) {
+				return;
+			}
 			arrows.getFirst().remove();
 			if(health.addAndGet(-1) <= 0) {
 				fixedPlatform.remove();
@@ -133,7 +140,7 @@ public class Mimicry extends Skill {
 				Realoni.disguiseProvider.disguise(player, Realoni.processingGame.getPlayerRole(player).getDisguise());
 				targetPlayer.removePotionEffect(PotionEffectType.RESISTANCE);
 				player.removePotionEffect(PotionEffectType.RESISTANCE);
-				targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 3 * 20, 0, false, false, true));
+				targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 2 * 20, 0, false, false, true));
 				task.cancel();
 			}
 			targetPlayer.getLocation().getWorld().playSound(

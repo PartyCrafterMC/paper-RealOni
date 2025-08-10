@@ -121,7 +121,7 @@ public class FakeAnimal extends Skill implements Listener {
 		zombie.getEquipment().setBoots(boots,true);
 		zombie.getEquipment().setItemInMainHand(new ItemStack(Material.WOODEN_SWORD), true);
 		zombie.getEquipment().setItemInOffHand(supply);
-		zombie.getEquipment().setItemInOffHandDropChance(0.3f);
+		zombie.getEquipment().setItemInOffHandDropChance(0.2f);
 		zombie.setCustomNameVisible(true);
 		zombie.customName(Component.text(player.getName()));
 		zombie.setAdult();
