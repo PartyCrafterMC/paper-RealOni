@@ -21,10 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 import ramune314159265.realoni.Ground;
 import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.items.Items;
-import ramune314159265.realoni.skills.FakeAnimal;
-import ramune314159265.realoni.skills.Mimicry;
-import ramune314159265.realoni.skills.Skill;
-import ramune314159265.realoni.skills.Tongue;
+import ramune314159265.realoni.skills.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -171,7 +168,8 @@ public class Chameleon extends Oni {
 		return List.of(
 				new Tongue(),
 				new Mimicry(),
-				new FakeAnimal()
+				new FakeAnimal(),
+				new FakeAnimalSuperExplosion()
 		);
 	}
 
