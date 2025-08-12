@@ -40,7 +40,7 @@ public class FakeAnimal extends Skill implements Listener {
 			double offsetX = Math.cos((Instant.now().toEpochMilli() - startAt) / 300d) * 0.5;
 			double offsetY = Math.sin((Instant.now().toEpochMilli() - startAt) / 300d) * 0.5;
 			Realoni.defaultWorld.getLivingEntities().stream()
-					.filter(e -> targetEntities.contains(e.getType()))
+					.filter(e -> targetEntities.contains(e.getType()) && !e.isInvisible())
 					.forEach(e -> {
 						if(!e.getPersistentDataContainer().getOrDefault(storageKey, PersistentDataType.BOOLEAN, false)){
 							return;
