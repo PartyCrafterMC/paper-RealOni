@@ -34,7 +34,7 @@ public class Chameleon extends Oni {
 	@Override
 	public void initialize() {
 		Disguise disguise = Disguise.builder()
-				.setName("11の鬼")
+				.setName("拾陸の鬼")
 				.build();
 		Realoni.disguiseProvider.disguise(player, disguise);
 
