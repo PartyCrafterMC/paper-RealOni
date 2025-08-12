@@ -7,7 +7,7 @@ import ramune314159265.realoni.skills.Skill;
 
 import java.util.List;
 
-public class Spectator extends RoleAbstract {
+public class Spectator extends Role {
 	public Spectator(Player player) {
 		this.player = player;
 	}

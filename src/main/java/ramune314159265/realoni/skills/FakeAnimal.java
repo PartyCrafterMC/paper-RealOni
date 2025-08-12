@@ -16,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Realoni;
-import ramune314159265.realoni.roles.RoleAbstract;
+import ramune314159265.realoni.roles.Role;
 
 import java.time.Instant;
 import java.util.*;
@@ -88,7 +88,7 @@ public class FakeAnimal extends Skill implements Listener {
 		}
 		e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 0.5f, false, true);
 
-		List<Map.Entry<Player, RoleAbstract>> survivors = Realoni.processingGame.playerRoles.entrySet().stream()
+		List<Map.Entry<Player, Role>> survivors = Realoni.processingGame.playerRoles.entrySet().stream()
 				.filter(entry -> entry.getValue().isSurvivor())
 				.toList();
 		Player mimicPlayer = survivors.get(new Random().nextInt(survivors.size())).getKey();

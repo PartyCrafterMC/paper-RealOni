@@ -6,7 +6,7 @@ import ramune314159265.realoni.skills.Skill;
 
 import java.util.List;
 
-public class Oni extends RoleAbstract {
+public class Oni extends Role {
 	public Oni(Player player) {
 		this.player = player;
 	}

@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.Realoni;
-import ramune314159265.realoni.roles.RoleAbstract;
+import ramune314159265.realoni.roles.Role;
 import ramune314159265.realoni.roles.Roles;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class ChangeRoleSubCommand extends SubCommand{
 				.orElse(Roles.roleList.getFirst());
 		Roles.setPlayerRoleEntry(player, roleEntry);
 		try {
-			RoleAbstract role = Roles.getPlayerRoleEntry(player).cls().getDeclaredConstructor(Player.class).newInstance(player);
+			Role role = Roles.getPlayerRoleEntry(player).cls().getDeclaredConstructor(Player.class).newInstance(player);
 			Realoni.processingGame.getPlayerRole(player).exit();
 			Realoni.processingGame.playerRoles.put(player, role);
 			sender.sendMessage(Component.text(roleEntry.name() + " に変更しました").color(NamedTextColor.GREEN));

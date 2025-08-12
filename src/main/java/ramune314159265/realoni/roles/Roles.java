@@ -27,6 +27,6 @@ public class Roles {
 		playerRoleEntry.put(player, roleEntry);
 	}
 
-	public record RoleEntry(Class<? extends RoleAbstract> cls, String name, Material icon, TextColor color) {
+	public record RoleEntry(Class<? extends Role> cls, String name, Material icon, TextColor color) {
 	}
 }

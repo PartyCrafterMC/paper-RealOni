@@ -6,7 +6,7 @@ import ramune314159265.realoni.skills.Skill;
 
 import java.util.List;
 
-abstract public class RoleAbstract {
+abstract public class Role {
 	public Player player;
 
 	public abstract String getDeathMessage();

@@ -9,7 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
-import ramune314159265.realoni.roles.RoleAbstract;
+import ramune314159265.realoni.roles.Role;
 import ramune314159265.realoni.roles.Roles;
 import ramune314159265.realoni.roles.Survivor;
 
@@ -26,7 +26,7 @@ public class Game {
 	public static final long worldShrinkTime = (long) Math.floor((Realoni.worldSize - miniumWorldSize) / worldShrinkPerSecond);
 	public LocalDateTime startAt;
 	public LocalDateTime releastAt;
-	public HashMap<Player, RoleAbstract> playerRoles = new HashMap<>();
+	public HashMap<Player, Role> playerRoles = new HashMap<>();
 
 	public Game() {
 		initialize();
@@ -48,7 +48,7 @@ public class Game {
 
 		for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
 			try {
-				RoleAbstract role = Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p);
+				Role role = Roles.getPlayerRoleEntry(p).cls().getDeclaredConstructor(Player.class).newInstance(p);
 				playerInitialize(p, role);
 			} catch (Exception ignored) {
 			}
@@ -75,7 +75,7 @@ public class Game {
 
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
-			playerRoles.values().forEach(RoleAbstract::tick);
+			playerRoles.values().forEach(Role::tick);
 
 			if(!Realoni.defaultWorld.isDayTime()) {
 				Realoni.defaultWorld.setTime(Realoni.defaultWorld.getTime() + 1);
@@ -83,7 +83,7 @@ public class Game {
 		}, 1, 1);
 	}
 
-	public void playerInitialize(Player player, RoleAbstract role) {
+	public void playerInitialize(Player player, Role role) {
 		playerRoles.put(player, role);
 
 		Location cageLocation = Cage.getSpawnLocation();
@@ -100,7 +100,7 @@ public class Game {
 		role.initialize();
 	}
 
-	public RoleAbstract getPlayerRole(Player player) {
+	public Role getPlayerRole(Player player) {
 		if (!playerRoles.containsKey(player)) {
 			Survivor defaultRole = new Survivor(player);
 			playerRoles.put(player, defaultRole);
