@@ -16,6 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.roles.Oni;
 import ramune314159265.realoni.roles.Role;
 
 import java.time.Instant;
@@ -124,5 +125,6 @@ public class FakeAnimal extends Skill implements Listener {
 		zombie.customName(Component.text(mimicPlayer.getName()));
 		zombie.setAdult();
 		zombie.setTarget((Player) e.getDamageSource().getCausingEntity());
+		Oni.oniTeam.addEntity(zombie);
 	}
 }

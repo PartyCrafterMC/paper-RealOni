@@ -16,6 +16,7 @@ import org.joml.AxisAngle4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.roles.Oni;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -93,6 +94,9 @@ public class Mimicry extends Skill {
 				new Vector3f(2, 2, 2),
 				new AxisAngle4f()
 		));
+
+		player.teleport(targetPlayer);
+
 		final long startAt = Instant.now().toEpochMilli();
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
@@ -138,6 +142,7 @@ public class Mimicry extends Skill {
 				playerEquipment.setBoots(savedEquipments[3]);
 				Realoni.disguiseProvider.undisguise(player);
 				Realoni.disguiseProvider.disguise(player, Realoni.processingGame.getPlayerRole(player).getDisguise());
+				Oni.oniTeam.addPlayer(player);
 				targetPlayer.removePotionEffect(PotionEffectType.RESISTANCE);
 				player.removePotionEffect(PotionEffectType.RESISTANCE);
 				targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 2 * 20, 0, false, false, true));

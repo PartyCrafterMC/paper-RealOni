@@ -33,12 +33,8 @@ public class Chameleon extends Oni {
 
 	@Override
 	public void initialize() {
-		Disguise disguise = Disguise.builder()
-				.setName("拾陸の鬼")
-				.build();
-		Realoni.disguiseProvider.disguise(player, disguise);
+		super.initialize();
 
-		player.setGameMode(GameMode.SURVIVAL);
 		setInventory();
 		player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false, true));
 		AttributeInstance healthAttribute = player.getAttribute(Attribute.MAX_HEALTH);
@@ -49,6 +45,7 @@ public class Chameleon extends Oni {
 	@Override
 	public void exit() {
 		try {
+			super.exit();
 			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
 			player.getAttribute(Attribute.MAX_HEALTH).removeModifier(NamespacedKey.fromString("chameleon_health", Realoni.getInstance()));
 			player.setHealth(60);
@@ -176,7 +173,7 @@ public class Chameleon extends Oni {
 	@Override
 	public Disguise getDisguise() {
 		return Disguise.builder()
-				.setName("11の鬼")
+				.setName("拾陸の鬼")
 				.build();
 	}
 }

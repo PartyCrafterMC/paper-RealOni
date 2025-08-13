@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.roles.Oni;
 
 import java.util.Optional;
 
@@ -88,6 +89,7 @@ public class MimicMobs extends CustomItem implements Listener {
 			zombie.customName(Component.text(p.getName()));
 			zombie.setAdult();
 			zombie.setTarget(p);
+			Oni.oniTeam.addEntity(zombie);
 
 			Skeleton skeleton = (Skeleton) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.SKELETON);
 			skeleton.setShouldBurnInDay(false);
@@ -99,6 +101,7 @@ public class MimicMobs extends CustomItem implements Listener {
 			skeleton.setCustomNameVisible(true);
 			skeleton.customName(Component.text(p.getName()));
 			skeleton.setTarget(p);
+			Oni.oniTeam.addEntity(skeleton);
 		}
 	}
 }
