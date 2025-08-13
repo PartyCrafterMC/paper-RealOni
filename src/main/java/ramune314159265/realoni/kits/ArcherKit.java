@@ -16,7 +16,8 @@ public class ArcherKit extends Kit {
 		Inventory inv = player.getInventory();
 		inv.setItem(0, new ItemStack(Material.WOODEN_SWORD));
 		inv.setItem(1, new ItemStack(Material.WOODEN_PICKAXE));
-		inv.setItem(2, new ItemStack(Material.WOODEN_SHOVEL));
+		inv.setItem(2, new ItemStack(Material.BOW));
+		inv.setItem(3, new ItemStack(Material.WOODEN_SHOVEL));
 		inv.setItem(4, new ItemStack(Material.WOODEN_AXE));
 		inv.setItem(5, new ItemStack(Material.TORCH, 16));
 		inv.setItem(6, new ItemStack(Material.COOKIE, 5));

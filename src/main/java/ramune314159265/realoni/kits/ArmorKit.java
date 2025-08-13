@@ -19,13 +19,14 @@ public class ArmorKit extends Kit {
 		inv.setItem(0, new ItemStack(Material.WOODEN_SWORD));
 		inv.setItem(1, new ItemStack(Material.WOODEN_PICKAXE));
 		inv.setItem(2, new ItemStack(Material.WOODEN_SHOVEL));
-		inv.setItem(4, new ItemStack(Material.WOODEN_AXE));
-		inv.setItem(5, new ItemStack(Material.TORCH, 16));
-		inv.setItem(6, new ItemStack(Material.COOKIE, 5));
+		inv.setItem(3, new ItemStack(Material.WOODEN_AXE));
+		inv.setItem(4, new ItemStack(Material.TORCH, 16));
+		inv.setItem(5, new ItemStack(Material.COOKIE, 5));
 		ItemStack chain = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta chainMeta = chain.getItemMeta();
-		chainMeta.addEnchant(Enchantment.PROTECTION, 4, true);
+		chainMeta.addEnchant(Enchantment.PROTECTION, 5, true);
 		chain.setItemMeta(chainMeta);
-		inv.setItem(7, chain);
+		inv.setItem(6, chain);
+		inv.setItem(7, new ItemStack(Material.SHIELD));
 	}
 }

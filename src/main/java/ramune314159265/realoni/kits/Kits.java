@@ -15,16 +15,24 @@ public class Kits {
 
 	public static void setPlayerKit(Player player, Kit kit) {
 		if(kitPlayerHashMap.containsValue(kit)) {
-			Player kitOldPlayer = kitPlayerHashMap.entrySet().stream()
-					.filter(e -> e.getValue() == kit)
-					.toList().getFirst().getKey();
-			kitPlayerHashMap.remove(kitOldPlayer);
+			removeKit(kit);
 		}
 		kitPlayerHashMap.put(player, kit);
 	}
 
+	public static void removeKit(Kit kit) {
+		Player player = kitPlayerHashMap.entrySet().stream()
+				.filter(e -> e.getValue() == kit)
+				.toList().getFirst().getKey();
+		kitPlayerHashMap.remove(player);
+	}
+
+	public static void removePlayer(Player player) {
+		kitPlayerHashMap.remove(player);
+	}
+
 	public static Kit getPlayerKit(Player player) {
-		if(!kitPlayerHashMap.containsKey(player)) {
+		if(kitPlayerHashMap.containsKey(player)) {
 			return kitPlayerHashMap.get(player);
 		}
 		return defaultKit;

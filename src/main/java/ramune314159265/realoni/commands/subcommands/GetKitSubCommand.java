@@ -10,10 +10,10 @@ import ramune314159265.realoni.kits.Kits;
 import java.util.Arrays;
 import java.util.List;
 
-public class SetKitSubcommand extends SubCommand {
+public class GetKitSubCommand extends SubCommand {
 	@Override
 	public String getName() {
-		return "setkit";
+		return "getkit";
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class SetKitSubcommand extends SubCommand {
 					.filter(i -> i.getName().equals(args.get(1)))
 					.toList().getFirst();
 
-			Kits.setPlayerKit(player, kit);
+			kit.setItems(player);
 		} catch (Exception ignored) {
 			sender.sendMessage(Component.text("キットが存在しません").color(NamedTextColor.RED));
 		}

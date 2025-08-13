@@ -20,7 +20,9 @@ public class RealOniCommand implements CommandExecutor, TabCompleter {
 			new GetItemSubCommand(),
 			new UseSkillSubCommand(),
 			new ChangeRoleSubCommand(),
-			new ChangeRoleWithInitSubCommand()
+			new ChangeRoleWithInitSubCommand(),
+			new SelectKitSubcommand(),
+			new GetKitSubCommand()
 	};
 
 	@Override
