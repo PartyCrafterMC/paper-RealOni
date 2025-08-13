@@ -58,6 +58,9 @@ public class FakeAnimalSuperExplosion extends Skill {
 			player.getWorld().spawnParticle(
 					Particle.END_ROD, player.getLocation(), 1, 0, 0, 0, 0, null, true
 			);
+			player.getWorld().spawnParticle(
+					Particle.DUST, player.getLocation(), 30, 10, 10, 10, 0, new Particle.DustOptions(Color.YELLOW, 2f)
+			);
 			player.getWorld().playSound(
 					player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BIT, SoundCategory.MASTER, 1, 1
 					);
@@ -94,7 +97,7 @@ public class FakeAnimalSuperExplosion extends Skill {
 				player.setVelocity(new Vector(0, -1.5, 0));
 				player.getWorld().setGameRule(GameRule.DO_TILE_DROPS, false);
 			}
-			if(t == 155) {
+			if(t == 157) {
 				breakSphere(startLocation.get().clone().add(0, -5, 0), 20);
 				player.getWorld().createExplosion(startLocation.get().clone().add(0, -25, 0), 10f, false, true);
 				player.getWorld().spawnParticle(
@@ -108,7 +111,7 @@ public class FakeAnimalSuperExplosion extends Skill {
 						.forEach(entry -> {
 							Vector direction = entry.getKey().getLocation().toVector().subtract(player.getLocation().toVector()).normalize();
 							entry.getKey().setVelocity(direction.multiply(1d / (0.015d * entry.getKey().getLocation().distance(player.getLocation()))).setY(1));
-							entry.getKey().damage(1d / (0.004d * entry.getKey().getLocation().distance(player.getLocation())), player);
+							entry.getKey().damage(1d / (0.005d * entry.getKey().getLocation().distance(player.getLocation())), player);
 						});
 			}
 			if(t == 170) {
