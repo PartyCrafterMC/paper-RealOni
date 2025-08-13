@@ -1,5 +1,5 @@
 name: realoni
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: ramune314159265.realoni.Realoni
 api-version: '1.21'
 authors: [ ramune314159265 ]
