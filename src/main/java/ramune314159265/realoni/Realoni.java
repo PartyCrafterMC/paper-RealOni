@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class Realoni extends JavaPlugin {
-	public static final int worldSize = 800;
+	public static final int worldSize = 700;
 	public static final DisguiseProvider disguiseProvider = DisguiseManager.getProvider();
 	public static World defaultWorld;
 	public static ChunkyAPI chunky;

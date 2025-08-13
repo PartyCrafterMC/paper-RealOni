@@ -20,10 +20,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Game {
-	public static final long releaseSecond = 3 * 60;
+	public static final long releaseSecond = 3L * 60L;
 	public static final int miniumWorldSize = 50;
-	public static final double worldShrinkPerSecond = 1f / 15f;
-	public static final long worldShrinkTime = (long) Math.floor((Realoni.worldSize - miniumWorldSize) / worldShrinkPerSecond);
+	public static final long worldShrinkTime = 2L * 60L * 60L;
 	public LocalDateTime startAt;
 	public LocalDateTime releastAt;
 	public HashMap<Player, Role> playerRoles = new HashMap<>();
