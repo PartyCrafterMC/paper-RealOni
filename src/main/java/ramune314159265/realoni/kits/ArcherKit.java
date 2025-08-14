@@ -21,7 +21,7 @@ public class ArcherKit extends Kit {
 		inv.setItem(4, new ItemStack(Material.WOODEN_AXE));
 		inv.setItem(5, new ItemStack(Material.TORCH, 16));
 		inv.setItem(6, new ItemStack(Material.COOKIE, 5));
-		inv.setItem(7, new ItemStack(Material.IRON_CHESTPLATE));
+		inv.setItem(7, new ItemStack(Material.IRON_HELMET));
 		inv.setItem(8, new ItemStack(Material.SPECTRAL_ARROW, 10));
 	}
 }
