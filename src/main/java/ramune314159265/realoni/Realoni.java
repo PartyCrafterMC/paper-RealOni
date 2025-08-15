@@ -69,7 +69,7 @@ public final class Realoni extends JavaPlugin {
 		}
 	}
 
-	public static Game startGame() {
+	public static Game newGame() {
 		Game game = new Game();
 		processingGame = game;
 		return game;

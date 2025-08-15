@@ -19,22 +19,18 @@ public class StartSubCommand extends SubCommand {
 
 	@Override
 	public void onCommand(CommandSender sender, List<String> args) {
-		if (!Objects.isNull(Realoni.processingGame)) {
-			sender.sendMessage(Component.text().content("既に開始されています").color(NamedTextColor.RED).build());
-			return;
-		}
-		if (Realoni.chunky.isRunning(Realoni.defaultWorld.getName())) {
-			sender.sendMessage(Component.text().content("チャンクの生成中です").color(NamedTextColor.RED).build());
+		if (Objects.isNull(Realoni.processingGame)) {
+			sender.sendMessage(Component.text().content("新しいゲームが準備されていません").color(NamedTextColor.RED).build());
 			return;
 		}
 
-		Realoni.broadcast(Component.text().content("10秒後に開始します").color(NamedTextColor.GREEN).build());
+		Realoni.broadcast(Component.text().content("5秒後に開始します").color(NamedTextColor.GREEN).build());
 
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskLater(Realoni.getInstance(), (BukkitTask task) -> {
 			Realoni.broadcast(Component.text().content("ゲームスタート！").color(NamedTextColor.LIGHT_PURPLE).build());
-			Realoni.startGame();
-		}, 200);
+			Realoni.processingGame.start();
+		}, 5L * 20L);
 	}
 
 	@Override
@@ -44,6 +40,6 @@ public class StartSubCommand extends SubCommand {
 
 	@Override
 	public boolean isAvailable() {
-		return !Realoni.chunky.isRunning(Realoni.defaultWorld.getName()) && Objects.isNull(Realoni.processingGame);
+		return !Objects.isNull(Realoni.processingGame) && !Realoni.processingGame.started;
 	}
 }

@@ -25,6 +25,7 @@ public class Game {
 	public static final long worldShrinkTime = 2L * 60L * 60L;
 	public LocalDateTime startAt;
 	public LocalDateTime releastAt;
+	public boolean started = false;
 	public HashMap<Player, Role> playerRoles = new HashMap<>();
 
 	public Game() {
@@ -32,9 +33,6 @@ public class Game {
 	}
 
 	public void initialize() {
-		this.startAt = LocalDateTime.now();
-		this.releastAt = this.startAt.plusSeconds(releaseSecond);
-
 		Realoni.defaultWorld.setDifficulty(Difficulty.NORMAL);
 		Realoni.defaultWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		Realoni.defaultWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, true);
@@ -52,6 +50,20 @@ public class Game {
 			} catch (Exception ignored) {
 			}
 		}
+
+		BukkitScheduler openExec = Bukkit.getScheduler();
+		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
+			playerRoles.values().forEach(Role::tick);
+
+			if(!Realoni.defaultWorld.isDayTime()) {
+				Realoni.defaultWorld.setTime(Realoni.defaultWorld.getTime() + 1);
+			}
+		}, 1, 1);
+	}
+
+	public void start() {
+		this.startAt = LocalDateTime.now();
+		this.releastAt = this.startAt.plusSeconds(releaseSecond);
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -71,15 +83,6 @@ public class Game {
 				}
 			}
 		}, 0, 1000);
-
-		BukkitScheduler openExec = Bukkit.getScheduler();
-		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
-			playerRoles.values().forEach(Role::tick);
-
-			if(!Realoni.defaultWorld.isDayTime()) {
-				Realoni.defaultWorld.setTime(Realoni.defaultWorld.getTime() + 1);
-			}
-		}, 1, 1);
 	}
 
 	public void playerInitialize(Player player, Role role) {

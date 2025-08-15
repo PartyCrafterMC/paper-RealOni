@@ -15,13 +15,14 @@ import java.util.Optional;
 public class RealOniCommand implements CommandExecutor, TabCompleter {
 	static SubCommand[] commands = {
 			new StartSubCommand(),
+			new NewGameSubCommand(),
 			new SupplyCountSubCommand(),
 			new SelectSubCommand(),
 			new GetItemSubCommand(),
 			new UseSkillSubCommand(),
 			new ChangeRoleSubCommand(),
 			new ChangeRoleWithInitSubCommand(),
-			new SelectKitSubcommand(),
+			new SelectKitSubCommand(),
 			new GetKitSubCommand()
 	};
 

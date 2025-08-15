@@ -10,7 +10,7 @@ import ramune314159265.realoni.kits.Kits;
 import java.util.Arrays;
 import java.util.List;
 
-public class SelectKitSubcommand extends SubCommand {
+public class SelectKitSubCommand extends SubCommand {
 	@Override
 	public String getName() {
 		return "selectkit";
