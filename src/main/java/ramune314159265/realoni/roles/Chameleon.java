@@ -166,7 +166,8 @@ public class Chameleon extends Oni {
 				new Tongue(),
 				new Mimicry(),
 				new FakeAnimal(),
-				new FakeAnimalSuperExplosion()
+				new FakeAnimalSuperExplosion(),
+				new HealthCheck()
 		);
 	}
 

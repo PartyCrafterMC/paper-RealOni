@@ -85,7 +85,7 @@ public class KingSword extends CustomItem implements Listener {
 			return;
 		}
 
-		victim.damage(6);
+		victim.damage(8);
 
 		Vector direction = victim.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize();
 		double knockbackStrength = 5;

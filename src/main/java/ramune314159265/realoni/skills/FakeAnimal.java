@@ -57,7 +57,7 @@ public class FakeAnimal extends Skill implements Listener {
 
 	@Override
 	public String getName() {
-		return "偽動物";
+		return "偽動物召喚";
 	}
 
 	@Override

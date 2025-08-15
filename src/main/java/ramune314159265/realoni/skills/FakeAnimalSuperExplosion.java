@@ -26,7 +26,7 @@ public class FakeAnimalSuperExplosion extends Skill {
 
 	@Override
 	public String getName() {
-		return "偽動物超爆破";
+		return "偽動物大爆発";
 	}
 
 	@Override

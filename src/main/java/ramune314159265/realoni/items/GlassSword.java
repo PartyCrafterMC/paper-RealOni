@@ -25,7 +25,7 @@ public class GlassSword extends CustomItem {
 		meta.itemName(Component.text(getName()));
 		meta.setRarity(ItemRarity.UNCOMMON);
 		meta.setMaxDamage(1);
-		meta.addEnchant(Enchantment.SHARPNESS, 10, true);
+		meta.addEnchant(Enchantment.SHARPNESS, 18, true);
 		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		item.setItemMeta(meta);
 		return item;
