@@ -68,6 +68,6 @@ public class Grenade extends CustomItem implements Listener {
 		if (!name.equals(getName())) {
 			return;
 		}
-		entity.getLocation().getWorld().createExplosion(entity.getLocation(), 6f, true, true);
+		entity.getLocation().getWorld().createExplosion(entity.getLocation(), 5f, true);
 	}
 }

@@ -82,9 +82,11 @@ public class Chameleon extends Oni {
 		ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 		ItemMeta chestplateMeta = chestplate.getItemMeta();
 		chestplateMeta.addEnchant(Enchantment.PROTECTION, 5, true);
+		chestplateMeta.addEnchant(Enchantment.BLAST_PROTECTION, 3, true);
 		chestplateMeta.setEnchantmentGlintOverride(false);
 		chestplateMeta.setUnbreakable(true);
 		chestplate.setItemMeta(chestplateMeta);
+
 		ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemMeta leggingsMeta = leggings.getItemMeta();
 		leggingsMeta.addEnchant(Enchantment.PROTECTION, 5, true);
