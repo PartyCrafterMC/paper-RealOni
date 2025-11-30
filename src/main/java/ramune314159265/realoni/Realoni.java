@@ -60,8 +60,10 @@ public final class Realoni extends JavaPlugin {
 	}
 
 	public static void playerInitialize(Player player) {
-		player.teleport(InitialRoom.getSpawnLocation());
-		player.setGameMode(GameMode.ADVENTURE);
+		if (Objects.isNull(Realoni.processingGame)) {
+			player.teleport(InitialRoom.getSpawnLocation());
+			player.setGameMode(GameMode.ADVENTURE);
+		}
 		for (CustomItem i : Items.customItems) {
 			if(!Objects.isNull(i.getKey())) {
 				player.discoverRecipe(i.getKey());
