@@ -64,9 +64,11 @@ public class Supply {
 			cumulative += entry.weight;
 			if (r <= cumulative) {
 				block.getWorld().dropItemNaturally(block.getLocation().add(0.5, 0.5, 0.5), entry.item);
-				break;
+				return;
 			}
 		}
+
+		block.getWorld().dropItemNaturally(block.getLocation().add(0.5, 0.5, 0.5), dropTable.getFirst().item);
 	}
 
 	private record DropEntry(double weight, ItemStack item) {
