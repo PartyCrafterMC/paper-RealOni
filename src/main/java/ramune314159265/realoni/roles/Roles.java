@@ -12,7 +12,8 @@ public class Roles {
 	public static final List<RoleEntry> roleList = List.of(
 			new RoleEntry(Survivor.class, "プレイヤー", Material.IRON_SWORD, NamedTextColor.YELLOW),
 			new RoleEntry(Spectator.class, "観戦者", Material.SPYGLASS, NamedTextColor.GRAY),
-			new RoleEntry(Chameleon.class, "拾陸の鬼", Material.NETHERITE_AXE, NamedTextColor.GREEN)
+			new RoleEntry(Chameleon.class, "拾陸の鬼", Material.NETHERITE_AXE, NamedTextColor.GREEN),
+			new RoleEntry(Fox.class, "拾漆の鬼", Material.FOX_SPAWN_EGG, NamedTextColor.GOLD)
 	);
 	public static HashMap<Player, RoleEntry> playerRoleEntry = new HashMap<>();
 
