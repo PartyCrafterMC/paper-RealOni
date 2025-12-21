@@ -43,7 +43,8 @@ public class Fox extends Oni{
 	@Override
 	public List<Skill> getSkills() {
 		return List.of(
-				new HealthCheck()
+				new HealthCheck(),
+				new SweetBerryRestrict()
 		);
 	}
 
