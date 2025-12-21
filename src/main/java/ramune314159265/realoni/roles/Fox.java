@@ -24,8 +24,7 @@ public class Fox extends Oni{
 
 		setInventory();
 		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, -1, 0, false, false, false));
-		AttributeInstance jumpAttribute = player.getAttribute(Attribute.JUMP_STRENGTH);
-		jumpAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_jump", Realoni.getInstance()), 0.3d, AttributeModifier.Operation.ADD_SCALAR));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, -1, 0, false, false, false));
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class Fox extends Oni{
 		try {
 			super.exit();
 			player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
-			player.getAttribute(Attribute.JUMP_STRENGTH).removeModifier(NamespacedKey.fromString("fox_jump", Realoni.getInstance()));
+			player.removePotionEffect(PotionEffectType.JUMP_BOOST);
 		} catch (Exception ignored) {
 		}
 	}
