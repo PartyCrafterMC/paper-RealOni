@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ramune314159265.realoni.Realoni;
-import ramune314159265.realoni.skills.Skill;
+import ramune314159265.realoni.skills.SkillUsable;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,8 +26,11 @@ public class UseSkillSubCommand extends SubCommand {
 		}
 
 		try {
-			Skill skill = Realoni.processingGame.getPlayerRole(player).getSkills()
-					.stream().filter(i -> i.getName().equals(args.get(1)))
+			SkillUsable skill = Realoni.processingGame.getPlayerRole(player).getSkills()
+					.stream()
+					.filter(SkillUsable.class::isInstance)
+					.map(SkillUsable.class::cast)
+					.filter(i -> i.getName().equals(args.get(1)))
 					.toList().getFirst();
 
 			skill.use(player);
@@ -42,7 +45,10 @@ public class UseSkillSubCommand extends SubCommand {
 			return List.of();
 		}
 		return Realoni.processingGame.getPlayerRole(player).getSkills()
-				.stream().map(Skill::getName).toList();
+				.stream()
+				.filter(SkillUsable.class::isInstance)
+				.map(SkillUsable.class::cast)
+				.map(SkillUsable::getName).toList();
 	}
 
 	@Override

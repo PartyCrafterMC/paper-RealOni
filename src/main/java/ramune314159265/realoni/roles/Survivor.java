@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import ramune314159265.realoni.kits.Kits;
 import ramune314159265.realoni.skills.Skill;
+import ramune314159265.realoni.skills.SkillUsable;
 
 import java.util.List;
 

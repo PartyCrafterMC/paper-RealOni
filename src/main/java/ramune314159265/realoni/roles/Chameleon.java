@@ -1,9 +1,7 @@
 package ramune314159265.realoni.roles;
 
 import dev.iiahmed.disguise.Disguise;
-import io.papermc.paper.datacomponent.item.Equippable;
 import org.bukkit.Color;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;

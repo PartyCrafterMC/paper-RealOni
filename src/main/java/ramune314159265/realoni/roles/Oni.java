@@ -10,6 +10,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.skills.Skill;
+import ramune314159265.realoni.skills.SkillUsable;
 
 import java.util.List;
 import java.util.Optional;

@@ -7,7 +7,7 @@ import ramune314159265.realoni.Realoni;
 
 import java.util.Comparator;
 
-public class HealthCheck extends Skill {
+public class HealthCheck extends SkillUsable {
 	@Override
 	public String getName() {
 		return "体力チェック";

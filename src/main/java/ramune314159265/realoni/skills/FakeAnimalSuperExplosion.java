@@ -1,10 +1,8 @@
 package ramune314159265.realoni.skills;
 
-import io.papermc.paper.entity.TeleportFlag;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class FakeAnimalSuperExplosion extends Skill {
+public class FakeAnimalSuperExplosion extends SkillUsable {
 	static final int requiredAnimalCount = 10;
 
 	@Override

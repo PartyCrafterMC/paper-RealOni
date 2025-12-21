@@ -19,13 +19,12 @@ import ramune314159265.realoni.Realoni;
 import ramune314159265.realoni.roles.Oni;
 
 import java.time.Instant;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Mimicry extends Skill {
+public class Mimicry extends SkillUsable {
 	static final Material[] flameMaterials = {
 			Material.AIR,
 			Material.RED_STAINED_GLASS,

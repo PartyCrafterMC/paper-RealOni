@@ -22,7 +22,7 @@ import ramune314159265.realoni.roles.Role;
 import java.time.Instant;
 import java.util.*;
 
-public class FakeAnimal extends Skill implements Listener {
+public class FakeAnimal extends SkillUsable implements Listener {
 	static final List<EntityType> targetEntities = List.of(
 			EntityType.COW,
 			EntityType.PIG,

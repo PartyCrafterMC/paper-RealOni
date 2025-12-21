@@ -1,12 +1,9 @@
 package ramune314159265.realoni.skills;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.AtomicDouble;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Tag;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -22,7 +19,7 @@ import ramune314159265.realoni.Realoni;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Tongue extends Skill {
+public class Tongue extends SkillUsable {
 	static final float maxLength = 15;
 	static final float speed = 40;
 	static final float catchableDistance = 0.8f;

@@ -4,6 +4,4 @@ import org.bukkit.entity.Player;
 
 abstract public class Skill {
 	abstract public String getName();
-
-	abstract public void use(Player player);
 }
