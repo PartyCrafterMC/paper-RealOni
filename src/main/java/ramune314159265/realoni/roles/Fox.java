@@ -23,9 +23,9 @@ public class Fox extends Oni{
 		super.initialize();
 
 		setInventory();
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, -1, 0, false, false, true));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, -1, 0, false, false, false));
 		AttributeInstance jumpAttribute = player.getAttribute(Attribute.JUMP_STRENGTH);
-		jumpAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_jump", Realoni.getInstance()), 0.75d, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+		jumpAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_jump", Realoni.getInstance()), 0.3d, AttributeModifier.Operation.ADD_SCALAR));
 	}
 
 	@Override
@@ -44,7 +44,8 @@ public class Fox extends Oni{
 	public List<Skill> getSkills() {
 		return List.of(
 				new HealthCheck(),
-				new SweetBerryRestrict()
+				new SweetBerryRestrict(),
+				new InvisibleFox()
 		);
 	}
 
