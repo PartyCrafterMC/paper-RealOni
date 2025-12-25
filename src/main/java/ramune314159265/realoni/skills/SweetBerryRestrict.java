@@ -90,6 +90,7 @@ public class SweetBerryRestrict extends Skill implements Listener {
 			return;
 		}
 		if(!Realoni.processingGame.getPlayerRole(player).isSurvivor()) {
+			e.setCancelled(true);
 			return;
 		}
 
