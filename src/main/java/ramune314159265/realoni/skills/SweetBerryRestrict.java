@@ -82,7 +82,6 @@ public class SweetBerryRestrict extends Skill implements Listener {
 
 	@EventHandler
 	public void entityDamagedByBlock(EntityDamageByBlockEvent e) {
-		Realoni.getInstance().getLogger().info(e.getDamager().getType().toString());
 		if(!(e.getEntity() instanceof Player player)){
 			return;
 		}

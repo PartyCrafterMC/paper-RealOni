@@ -53,6 +53,7 @@ public class Oni extends Role {
 
 	@Override
 	public void initialize() {
+		getSkills();
 		Realoni.disguiseProvider.disguise(player, getDisguise());
 		player.setGameMode(GameMode.SURVIVAL);
 		oniTeam.addPlayer(player);
