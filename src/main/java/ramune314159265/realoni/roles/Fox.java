@@ -44,7 +44,8 @@ public class Fox extends Oni{
 		return List.of(
 				new HealthCheck(),
 				new SweetBerryRestrict(),
-				new InvisibleFox()
+				new InvisibleFox(),
+				new CursedFox()
 		);
 	}
 
