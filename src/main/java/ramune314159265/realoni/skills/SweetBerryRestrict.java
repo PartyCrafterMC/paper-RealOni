@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -95,5 +96,17 @@ public class SweetBerryRestrict extends Skill implements Listener {
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 0, false, false, false));
 		player.setFireTicks(60);
+	}
+
+	@EventHandler
+	public void playerItemConsumed(PlayerItemConsumeEvent e){
+		if(!e.getItem().getType().equals(Material.SWEET_BERRIES)){
+			return;
+		}
+		if (!Realoni.processingGame.getPlayerRole(e.getPlayer()).isSurvivor()) {
+			return;
+		}
+
+		e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 0, false, false, false));
 	}
 }
