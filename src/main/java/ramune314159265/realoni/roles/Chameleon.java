@@ -46,7 +46,7 @@ public class Chameleon extends Oni {
 			super.exit();
 			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
 			player.getAttribute(Attribute.MAX_HEALTH).removeModifier(NamespacedKey.fromString("chameleon_health", Realoni.getInstance()));
-			player.setHealth(60);
+			player.setHealth(20);
 		} catch (Exception ignored) {
 		}
 	}
