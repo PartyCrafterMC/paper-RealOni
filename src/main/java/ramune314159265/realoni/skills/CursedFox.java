@@ -2,6 +2,9 @@ package ramune314159265.realoni.skills;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -40,6 +43,18 @@ public class CursedFox extends Skill implements Listener {
 			Biome.TAIGA
 	);
 	static final NamespacedKey storageKey = NamespacedKey.fromString("fox_cursed_fox", Realoni.getInstance());
+	static int foxDeathCount = 0;
+	static Color getParticleColor() {
+		return switch (foxDeathCount) {
+			case 0, 1 -> Color.YELLOW;
+			case 2, 3, 4 -> Color.ORANGE;
+			case 5, 6 -> Color.RED;
+			case 7 -> Color.fromRGB(152, 0, 0);
+			case 8 -> Color.fromRGB(52, 0, 0);
+			case 9 -> Color.fromRGB(37, 0, 0);
+			default -> Color.BLACK;
+		};
+	}
 
 	static {
 		Realoni.getInstance().getServer().getPluginManager().registerEvents(new CursedFox(), Realoni.getInstance());
@@ -53,7 +68,7 @@ public class CursedFox extends Skill implements Listener {
 		for (int i = 0; i < 100; i++) {
 			int randomX = random.nextInt(Realoni.worldSize) - Realoni.worldSize / 2;
 			int randomZ = random.nextInt(Realoni.worldSize) - Realoni.worldSize / 2;
-			int y = Ground.getY(Realoni.defaultWorld, randomX, randomZ) + 1;
+			int y = Ground.getY(Realoni.defaultWorld, randomX, randomZ) + 2;
 			Biome biome = Realoni.defaultWorld.getBiome(randomX, y, randomZ);
 			if(!targetBiomes.contains(biome)){
 				continue;
@@ -74,7 +89,7 @@ public class CursedFox extends Skill implements Listener {
 						}
 						Realoni.defaultWorld.spawnParticle(
 								Particle.DUST, e.getLocation().add(0, 0.2, 0.5),
-								5, 0.4, 0.2, 0.4, 0.05, new Particle.DustOptions(Color.BLACK, 1.5f), true
+								5, 0.4, 0.2, 0.4, 0.05, new Particle.DustOptions(getParticleColor(), 1.5f), true
 						);
 					});
 		}, 1, 5);
@@ -96,5 +111,15 @@ public class CursedFox extends Skill implements Listener {
 		}
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 1, false, false, false));
+		foxDeathCount++;
+		if(foxDeathCount == 10) {
+			for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
+				if(!Realoni.processingGame.getPlayerRole(p).isSurvivor()) {
+					return;
+				}
+				AttributeInstance healthAttribute = p.getAttribute(Attribute.MAX_HEALTH);
+				healthAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_cursed_fox", Realoni.getInstance()), -4d, AttributeModifier.Operation.ADD_NUMBER));
+			}
+		}
 	}
 }
