@@ -61,16 +61,19 @@ public class SweetBerryRestrict extends Skill implements Listener {
 		BukkitScheduler openExec = Bukkit.getScheduler();
 		openExec.runTaskTimer(Realoni.getInstance(), (BukkitTask task) -> {
 			for (Location location : sweetBerryLocations) {
+				if(0.3 < Math.random()) {
+					continue;
+				}
 				if (!isTargetBlock(location.getBlock())){
 					sweetBerryLocations.remove(location);
 					continue;
 				}
 				Realoni.defaultWorld.spawnParticle(
 						Particle.DUST, location.toCenterLocation(),
-						10, 0.3, 0.3, 0.3, 0.05 ,new Particle.DustOptions(Color.BLACK, 1.5f),true
+						10, 0.3, 0.3, 0.3, 0.05, new Particle.DustOptions(Color.BLACK, 2f), true
 				);
 			}
-		}, 1, 5);
+		}, 1, 3);
 	}
 
 	@EventHandler
