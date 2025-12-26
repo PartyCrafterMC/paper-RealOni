@@ -25,6 +25,7 @@ public class Fox extends Oni{
 		setInventory();
 		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, -1, 0, false, false, false));
 		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, -1, 0, false, false, false));
+		player.setHealth(60);
 	}
 
 	@Override
@@ -33,6 +34,7 @@ public class Fox extends Oni{
 			super.exit();
 			player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 			player.removePotionEffect(PotionEffectType.JUMP_BOOST);
+			player.setHealth(20);
 		} catch (Exception ignored) {
 		}
 	}
