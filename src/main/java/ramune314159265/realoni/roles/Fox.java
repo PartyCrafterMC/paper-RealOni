@@ -50,7 +50,8 @@ public class Fox extends Oni{
 				new HealthCheck(),
 				new SweetBerryRestrict(),
 				new InvisibleFox(),
-				new CursedFox()
+				new CursedFox(),
+				new FloorLava()
 		);
 	}
 

@@ -88,7 +88,7 @@ public class CursedFox extends Skill implements Listener {
 							return;
 						}
 						Realoni.defaultWorld.spawnParticle(
-								Particle.DUST, e.getLocation().add(0, 0.2, 0.5),
+								Particle.DUST, e.getLocation().add(0, 0.2, 0),
 								5, 0.4, 0.2, 0.4, 0.05, new Particle.DustOptions(getParticleColor(), 1.5f), true
 						);
 					});
