@@ -20,7 +20,7 @@ import ramune314159265.realoni.Realoni;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SweetBerryRestrict extends Skill implements Listener {
+public class SweetBerryRestrict extends SkillUsable implements Listener {
 	@Override
 	public String getName() {
 		return "スイートベリーの拘束";
@@ -111,5 +111,23 @@ public class SweetBerryRestrict extends Skill implements Listener {
 		}
 
 		e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 0, false, false, false));
+	}
+
+	@Override
+	public void use(Player player) {
+		player.getLocation().getNearbyPlayers(20)
+				.stream().filter(p -> !p.equals(player))
+				.forEach(p -> {
+					for (int x = -1; x <= 1; x++) {
+						for (int z = -1; z <= 1; z++) {
+							Location loc = p.getLocation().add(x, 0, z);
+							loc.getBlock().setType(Material.SWEET_BERRY_BUSH);
+							Ageable data = (Ageable) loc.getBlock().getBlockData();
+							data.setAge(3);
+							loc.getBlock().setBlockData(data);
+							sweetBerryLocations.add(loc);
+						}
+					}
+				});
 	}
 }
