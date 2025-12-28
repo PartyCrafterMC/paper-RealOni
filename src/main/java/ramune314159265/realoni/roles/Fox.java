@@ -1,11 +1,16 @@
 package ramune314159265.realoni.roles;
 
 import dev.iiahmed.disguise.Disguise;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import ramune314159265.realoni.Realoni;
@@ -42,7 +47,26 @@ public class Fox extends Oni{
 		}
 	}
 
-	public void setInventory() {}
+	public void setInventory() {
+		ItemStack sword = new ItemStack(Material.NETHERITE_SWORD);
+		ItemMeta swordMeta = sword.getItemMeta();
+		swordMeta.addEnchant(Enchantment.FIRE_ASPECT, 2,true);
+		swordMeta.addEnchant(Enchantment.KNOCKBACK, 1,true);
+		swordMeta.addEnchant(Enchantment.SMITE, 10,true);
+		swordMeta.setUnbreakable(true);
+		sword.setItemMeta(swordMeta);
+
+		Inventory inv = player.getInventory();
+		inv.setItem(0, sword);
+		inv.addItem(new ItemStack(Material.BREAD, 64));
+		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
+		inv.addItem(new ItemStack(Material.FLINT_AND_STEEL));
+		inv.addItem(new ItemStack(Material.BEDROCK, 64));
+		inv.addItem(new ItemStack(Material.WATER_BUCKET));
+		inv.addItem(new ItemStack(Material.LAVA_BUCKET));
+		inv.addItem(new ItemStack(Material.ARROW));
+		inv.addItem(new ItemStack(Material.SHEARS));
+	}
 
 	@Override
 	public List<Skill> getSkills() {
