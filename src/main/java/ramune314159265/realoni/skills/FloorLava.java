@@ -9,10 +9,7 @@ import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Ground;
 import ramune314159265.realoni.Realoni;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FloorLava extends SkillUsable {
@@ -28,11 +25,12 @@ public class FloorLava extends SkillUsable {
 			new HashSet<>(List.of(
 			))));
 
-	static Set<Location> getLocations(Location center) {
-		Set<Location> result = new HashSet<>();
+	static Map<Integer, Set<Location>> getLocations(Location center) {
+		Map<Integer, Set<Location>> result = new HashMap<>();
 		for (int rx = -radius; rx <= radius; rx++) {
 			for (int rz = -radius; rz <= radius; rz++) {
-				if(Math.pow(radius, 2) < Math.pow(rx, 2) + Math.pow(rz, 2)) {
+				int distance = (int) Math.floor(Math.hypot(rx, rz));
+				if(radius < distance) {
 					continue;
 				}
 				int x = center.getBlockX() + rx;
@@ -40,7 +38,7 @@ public class FloorLava extends SkillUsable {
 				int y = Ground.getY(center.getWorld(), x, z);
 				Location location = new Location(center.getWorld(), x, y, z);
 				if (includeBlocks.contains(location.getBlock().getType())) {
-					result.add(location);
+					result.computeIfAbsent(distance, i -> new HashSet<>()).add(location);
 				}
 			}
 		}
@@ -50,7 +48,7 @@ public class FloorLava extends SkillUsable {
 	@Override
 	public void use(Player player) {
 		Location center = player.getLocation().clone();
-		Set<Location> locations = getLocations(center);
+		Map<Integer, Set<Location>> locations = getLocations(center);
 		Collection<? extends Player> players = Realoni.getInstance().getServer().getOnlinePlayers();
 		BukkitScheduler scheduler = Bukkit.getScheduler();
 		AtomicInteger tick = new AtomicInteger(-1);
@@ -64,20 +62,14 @@ public class FloorLava extends SkillUsable {
 			});
 			int t = tick.addAndGet(1);
 			if(0 <= t && t <= 59) {
-				players.forEach(p -> {
-					locations.forEach(l -> p.sendBlockDamage(l, (float) t / 60));
-				});
+				int target = (int) Math.floor(((double) t / 59) * radius);
+				locations.get(target).forEach(l -> l.getBlock().setType(Material.MAGMA_BLOCK));
 			}
-			if (60 == t) {
-				locations.forEach(l -> l.getBlock().setType(Material.MAGMA_BLOCK));
+			if(60 <= t && t <= 159) {
+				int target = (int) Math.floor(((double) (t - 60) / 99) * radius);
+				locations.get(target).forEach(l -> l.getBlock().setType(Material.LAVA));
 			}
-			if(61 <= t && t <= 119) {
-				players.forEach(p -> {
-					locations.forEach(l -> p.sendBlockDamage(l, (float) (t - 60) / 60));
-				});
-			}
-			if (120 == t) {
-				locations.forEach(l -> l.getBlock().setType(Material.LAVA));
+			if(t == 160) {
 				task.cancel();
 			}
 		}, 0, 1);
