@@ -46,12 +46,11 @@ public class CursedFox extends Skill implements Listener {
 	static int foxDeathCount = 0;
 	static Color getParticleColor() {
 		return switch (foxDeathCount) {
-			case 0, 1 -> Color.YELLOW;
-			case 2, 3, 4 -> Color.ORANGE;
-			case 5, 6 -> Color.RED;
-			case 7 -> Color.fromRGB(152, 0, 0);
-			case 8 -> Color.fromRGB(52, 0, 0);
-			case 9 -> Color.fromRGB(37, 0, 0);
+			case 0 -> Color.YELLOW;
+			case 1 -> Color.RED;
+			case 2 -> Color.fromRGB(152, 0, 0);
+			case 3 -> Color.fromRGB(52, 0, 0);
+			case 4 -> Color.fromRGB(37, 0, 0);
 			default -> Color.BLACK;
 		};
 	}
@@ -112,13 +111,13 @@ public class CursedFox extends Skill implements Listener {
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 1, false, false, false));
 		foxDeathCount++;
-		if(foxDeathCount == 10) {
+		if(foxDeathCount == 5) {
 			for (Player p : Realoni.getInstance().getServer().getOnlinePlayers()) {
 				if(!Realoni.processingGame.getPlayerRole(p).isSurvivor()) {
 					return;
 				}
 				AttributeInstance healthAttribute = p.getAttribute(Attribute.MAX_HEALTH);
-				healthAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_cursed_fox", Realoni.getInstance()), -4d, AttributeModifier.Operation.ADD_NUMBER));
+				healthAttribute.addModifier(new AttributeModifier(NamespacedKey.fromString("fox_cursed_fox", Realoni.getInstance()), -6d, AttributeModifier.Operation.ADD_NUMBER));
 			}
 		}
 	}

@@ -16,6 +16,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import ramune314159265.realoni.Ground;
 import ramune314159265.realoni.Realoni;
+import ramune314159265.realoni.roles.Fox;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -92,7 +93,7 @@ public class SweetBerryRestrict extends SkillUsable implements Listener {
 		if(!e.getDamager().getType().equals(Material.SWEET_BERRY_BUSH)) {
 			return;
 		}
-		if(!Realoni.processingGame.getPlayerRole(player).isSurvivor()) {
+		if(Realoni.processingGame.getPlayerRole(player) instanceof Fox) {
 			e.setCancelled(true);
 			return;
 		}
